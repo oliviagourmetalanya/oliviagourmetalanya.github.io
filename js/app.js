@@ -612,7 +612,8 @@
     const brandName = document.querySelector('.brand-name');
     const brandTag = document.querySelector('.brand-tagline');
     if (brandName) brandName.textContent = CONFIG.name;
-    if (brandTag) brandTag.textContent = CONFIG.tagline;
+    // Home tagline shows the full label below the logo: "Olivia Gourmet Restaurant Menu"
+    if (brandTag) brandTag.textContent = `${CONFIG.name} ${CONFIG.tagline} Menu`;
 
     renderLogo();
 
