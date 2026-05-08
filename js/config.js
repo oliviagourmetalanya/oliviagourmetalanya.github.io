@@ -1,5 +1,5 @@
 /* ============================================
-   AYARLAR — Yönetim Paneli'nden 08.05.2026 18:02:44 tarihinde dışa aktarıldı
+   AYARLAR — Yönetim Paneli'nden 08.05.2026 19:48:44 tarihinde dışa aktarıldı
    ============================================ */
 
 window.CONFIG = {
