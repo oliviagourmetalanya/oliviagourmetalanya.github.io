@@ -138,9 +138,16 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="js/config.js"></script>
-  <script src="js/i18n.js"></script>
-  <script src="js/menu.js"></script>
-  <script src="js/app.js"></script>
+  <!-- Cache-busting: force fresh JS fetch on every page load.
+       Customers visiting after a menu update see the new menu immediately
+       instead of waiting for browser cache to expire. -->
+  <script>
+    (function() {
+      var t = Date.now();
+      ['js/config.js', 'js/i18n.js', 'js/menu.js', 'js/app.js'].forEach(function(src) {
+        document.write('<scr' + 'ipt src="' + src + '?t=' + t + '"><' + '/scr' + 'ipt>');
+      });
+    })();
+  </script>
 </body>
 </html>

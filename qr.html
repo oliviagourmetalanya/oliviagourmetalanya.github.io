@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+  <!-- Load config so CONFIG.logo (admin-uploaded logo) works on the QR card too -->
+  <script>document.write('<scr' + 'ipt src="js/config.js?t=' + Date.now() + '"><' + '/scr' + 'ipt>');</script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {

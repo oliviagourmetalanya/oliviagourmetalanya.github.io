@@ -10,10 +10,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Veriyi mevcut menu.js / config.js / i18n.js'ten yükle -->
-  <script src="js/config.js"></script>
-  <script src="js/i18n.js"></script>
-  <script src="js/menu.js"></script>
+  <!-- Veriyi mevcut menu.js / config.js / i18n.js'ten yükle (cache-bust ile taze) -->
+  <script>
+    (function() {
+      var t = Date.now();
+      ['js/config.js', 'js/i18n.js', 'js/menu.js'].forEach(function(src) {
+        document.write('<scr' + 'ipt src="' + src + '?t=' + t + '"><' + '/scr' + 'ipt>');
+      });
+    })();
+  </script>
 </head>
 <body>
   <header class="admin-topbar">
@@ -229,6 +234,6 @@
   <!-- Hidden file input for import -->
   <input type="file" id="importInput" accept=".js,.json" hidden>
 
-  <script src="js/admin.js"></script>
+  <script>document.write('<scr' + 'ipt src="js/admin.js?t=' + Date.now() + '"><' + '/scr' + 'ipt>');</script>
 </body>
 </html>
