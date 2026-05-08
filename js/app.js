@@ -65,9 +65,28 @@
   const STATE = {
     lang: CONFIG.defaultLang,
     view: 'home',
-    activeCategory: { food: null, drinks: null, wines: null },
-    drinksFilter: 'all'  // all | alc | noalc
+    activeCategory: {
+      food:   loadActiveCategory('food'),
+      drinks: loadActiveCategory('drinks'),
+      wines:  loadActiveCategory('wines')
+    },
+    drinksFilter: loadDrinksFilter()
   };
+
+  function loadActiveCategory(kind) {
+    try { return localStorage.getItem('olivia_active_cat_' + kind) || null; }
+    catch (e) { return null; }
+  }
+  function saveActiveCategory(kind, catId) {
+    try { localStorage.setItem('olivia_active_cat_' + kind, catId); } catch (e) {}
+  }
+  function loadDrinksFilter() {
+    try { return localStorage.getItem('olivia_drinks_filter') || 'all'; }
+    catch (e) { return 'all'; }
+  }
+  function saveDrinksFilter(f) {
+    try { localStorage.setItem('olivia_drinks_filter', f); } catch (e) {}
+  }
 
   // ============================================
   // Language detection & switching
@@ -226,6 +245,7 @@
     allBtn.textContent = TRANSLATIONS[STATE.lang].all || 'All';
     allBtn.addEventListener('click', () => {
       STATE.activeCategory[kind] = '__all';
+      saveActiveCategory(kind, '__all');
       renderMenu(kind);
     });
     catEl.appendChild(allBtn);
@@ -236,6 +256,7 @@
       btn.textContent = tr(cat.name, STATE.lang);
       btn.addEventListener('click', () => {
         STATE.activeCategory[kind] = cat.id;
+        saveActiveCategory(kind, cat.id);
         renderMenu(kind);
         // Don't auto-scroll the page — categories bar is sticky, user keeps
         // their scroll position. They can manually scroll if they want.
@@ -328,6 +349,7 @@
       btn.addEventListener('click', () => {
         if (STATE.drinksFilter === b.key) return;
         STATE.drinksFilter = b.key;
+        saveDrinksFilter(b.key);
         // Reset active category — the previous one might be filtered out
         STATE.activeCategory.drinks = null;
         renderMenu('drinks');
