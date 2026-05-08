@@ -210,25 +210,25 @@ main { min-height: calc(100vh - 64px); }
 
 .brand {
   text-align: center;
-  padding: 32px 0 28px;
+  padding: 18px 0 16px;
 }
 
 .brand-mark {
-  max-width: 320px;
-  max-height: 200px;
-  margin: 0 auto 16px;
+  max-width: 200px;
+  max-height: 120px;
+  margin: 0 auto 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   filter: drop-shadow(0 4px 12px rgba(201, 169, 110, 0.2));
 }
 .brand-mark svg {
-  width: 96px;
-  height: 96px;
+  width: 80px;
+  height: 80px;
 }
 .brand-mark .brand-logo-img {
   max-width: 100%;
-  max-height: 200px;
+  max-height: 120px;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -236,10 +236,10 @@ main { min-height: calc(100vh - 64px); }
 
 .brand-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 56px;
+  font-size: 40px;
   font-weight: 600;
   color: var(--accent);
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   line-height: 1;
   background: linear-gradient(180deg, var(--accent-hi) 0%, var(--accent) 60%, var(--accent-dark) 100%);
   -webkit-background-clip: text;
@@ -248,11 +248,11 @@ main { min-height: calc(100vh - 64px); }
 }
 
 .brand-tagline {
-  font-size: 11px;
+  font-size: 10px;
   color: var(--text-muted);
-  letter-spacing: 6px;
+  letter-spacing: 5px;
   text-transform: uppercase;
-  margin-top: 6px;
+  margin-top: 4px;
   font-weight: 500;
 }
 
@@ -661,45 +661,27 @@ main { min-height: calc(100vh - 64px); }
   border-radius: var(--radius);
   overflow: hidden;
   transition: border-color 0.2s, transform 0.2s;
-  position: relative;
 }
 
 .item:hover { border-color: var(--border-hi); }
 
-/* Background panel for the image column — always fills full card height
-   so when text is long, the area below the image looks intentional, not empty. */
-.item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 110px;
-  background: linear-gradient(135deg, var(--surface-2), var(--bg-elev));
-  border-right: 1px solid var(--border);
-  z-index: 0;
-  pointer-events: none;
-}
-.item > * { position: relative; z-index: 1; }
-
 .item-image {
   width: 110px;
   height: 110px;
-  align-self: center;
   object-fit: cover;
-  background: transparent;
+  background: var(--surface-2);
   display: block;
 }
 
 .item-image-placeholder {
   width: 110px;
   height: 110px;
-  align-self: center;
-  background: transparent;
+  background: linear-gradient(135deg, var(--surface-2), var(--bg-elev));
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 38px;
+  border-right: 1px solid var(--border);
 }
 
 .item-body {
@@ -864,7 +846,6 @@ main { min-height: calc(100vh - 64px); }
   .brand-name { font-size: 72px; }
   .view-title { font-size: 48px; }
   .item { grid-template-columns: 140px 1fr; }
-  .item::before { width: 140px; }
   .item-image, .item-image-placeholder { width: 140px; height: 140px; }
   .item-image-placeholder { font-size: 48px; }
   .item-name { font-size: 21px; }
@@ -879,6 +860,5 @@ main { min-height: calc(100vh - 64px); }
   .btn-icon-wrap svg { width: 22px; height: 22px; }
   .btn-label { font-size: 19px; }
   .item { grid-template-columns: 90px 1fr; }
-  .item::before { width: 90px; }
   .item-image, .item-image-placeholder { width: 90px; height: 90px; }
 }
