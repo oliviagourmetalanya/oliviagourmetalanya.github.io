@@ -251,7 +251,13 @@ window.MENU = {
       },
       "note": {
         "tr": "Bütün ana yemekler, gratin edilmiş patates, sebze ve özel hazırlanmış sarımsaklı tereyağlı patates eşliğinde servis edilir.",
-        "en": "All main meals are served with gratinated potatoes, vegetables and potatoes specially prepared with garlic butter."
+        "en": "All main meals are served with gratinated potatoes, vegetables and potatoes specially prepared with garlic butter.",
+        "sv": "Alla huvudrätter serveras med gratinerad potatis, grönsaker och potatis tillagad med vitlökssmör.",
+        "no": "Alle hovedretter serveres med gratinert potet, grønnsaker og potet tilberedt med hvitløkssmør.",
+        "da": "Alle hovedretter serveres med gratinerede kartofler, grøntsager og kartofler tilberedt med hvidløgssmør.",
+        "fi": "Kaikkien pääruokien lisukkeena kuorrutetut perunat, vihannekset ja valkosipulivoissa valmistetut perunat.",
+        "ru": "Все основные блюда подаются с картофелем гратен, овощами и картофелем, приготовленным с чесночным маслом.",
+        "de": "Alle Hauptgerichte werden mit Gratinkartoffeln, Gemüse und Kartoffeln in Knoblauchbutter serviert."
       },
       "items": [
         {
@@ -386,7 +392,13 @@ window.MENU = {
       },
       "note": {
         "tr": "Dry Aged steakleri az veya orta pişmiş tercih etmenizi tavsiye ediyoruz.",
-        "en": "We suggest you to prefer the Dry Aged steaks rare or medium rare."
+        "en": "We suggest you to prefer the Dry Aged steaks rare or medium rare.",
+        "sv": "Vi rekommenderar att Dry Aged-biffar tillagas blodig eller medium blodig.",
+        "no": "Vi anbefaler at Dry Aged-biffer tilberedes rå eller medium rå.",
+        "da": "Vi anbefaler, at Dry Aged-bøffer tilberedes rød eller medium rød.",
+        "fi": "Suosittelemme Dry Aged -pihvit raakana tai puolikypsänä.",
+        "ru": "Стейки сухой выдержки рекомендуем заказывать прожарки rare или medium rare.",
+        "de": "Wir empfehlen Dry Aged Steaks rare oder medium rare."
       },
       "items": [
         {
@@ -1548,7 +1560,13 @@ window.MENU = {
       },
       "note": {
         "tr": "Soft içecek ile +20 ₺ · Red Bull ile +65 ₺",
-        "en": "With soft drink +20 ₺ · with Red Bull +65 ₺"
+        "en": "With soft drink +20 ₺ · with Red Bull +65 ₺",
+        "sv": "Med läsk +20 ₺ · med Red Bull +65 ₺",
+        "no": "Med brus +20 ₺ · med Red Bull +65 ₺",
+        "da": "Med sodavand +20 ₺ · med Red Bull +65 ₺",
+        "fi": "Virvoitusjuoman kanssa +20 ₺ · Red Bullin kanssa +65 ₺",
+        "ru": "С безалкогольным напитком +20 ₺ · с Red Bull +65 ₺",
+        "de": "Mit Erfrischungsgetränk +20 ₺ · mit Red Bull +65 ₺"
       },
       "items": [
         {
@@ -1644,14 +1662,26 @@ window.MENU = {
       },
       "note": {
         "tr": "Red Bull ile 630 ₺ · Soft içecek ile 595 ₺ (geçerli ürünler için)",
-        "en": "With Red Bull 630 ₺ · with soft drink 595 ₺ (where applicable)"
+        "en": "With Red Bull 630 ₺ · with soft drink 595 ₺ (where applicable)",
+        "sv": "Med Red Bull 630 ₺ · med läsk 595 ₺ (där tillämpligt)",
+        "no": "Med Red Bull 630 ₺ · med brus 595 ₺ (der det er aktuelt)",
+        "da": "Med Red Bull 630 ₺ · med sodavand 595 ₺ (hvor det er muligt)",
+        "fi": "Red Bullin kanssa 630 ₺ · virvoitusjuoman kanssa 595 ₺ (soveltuvin osin)",
+        "ru": "С Red Bull 630 ₺ · с безалкогольным напитком 595 ₺ (где применимо)",
+        "de": "Mit Red Bull 630 ₺ · mit Erfrischungsgetränk 595 ₺ (wo zutreffend)"
       },
       "items": [
         {
           "name": "Bacardi",
           "section": {
             "tr": "Romlar",
-            "en": "Rums"
+            "en": "Rums",
+            "sv": "Rom",
+            "no": "Rom",
+            "da": "Rom",
+            "fi": "Rommit",
+            "ru": "Ромы",
+            "de": "Rums"
           },
           "icon": "🥃",
           "image": "",
@@ -1666,7 +1696,13 @@ window.MENU = {
           "name": "Captain Morgan",
           "section": {
             "tr": "Romlar",
-            "en": "Rums"
+            "en": "Rums",
+            "sv": "Rom",
+            "no": "Rom",
+            "da": "Rom",
+            "fi": "Rommit",
+            "ru": "Ромы",
+            "de": "Rums"
           },
           "icon": "🥃",
           "image": "",
@@ -1681,7 +1717,13 @@ window.MENU = {
           "name": "Malibu",
           "section": {
             "tr": "Romlar",
-            "en": "Rums"
+            "en": "Rums",
+            "sv": "Rom",
+            "no": "Rom",
+            "da": "Rom",
+            "fi": "Rommit",
+            "ru": "Ромы",
+            "de": "Rums"
           },
           "icon": "🥥",
           "image": "",
@@ -1696,7 +1738,13 @@ window.MENU = {
           "name": "Smirnoff",
           "section": {
             "tr": "Votka & Cin",
-            "en": "Vodka & Gin"
+            "en": "Vodka & Gin",
+            "sv": "Vodka & gin",
+            "no": "Vodka & gin",
+            "da": "Vodka & gin",
+            "fi": "Vodka & gini",
+            "ru": "Водка и джин",
+            "de": "Wodka & Gin"
           },
           "icon": "🥃",
           "image": "",
@@ -1711,7 +1759,13 @@ window.MENU = {
           "name": "Absolut",
           "section": {
             "tr": "Votka & Cin",
-            "en": "Vodka & Gin"
+            "en": "Vodka & Gin",
+            "sv": "Vodka & gin",
+            "no": "Vodka & gin",
+            "da": "Vodka & gin",
+            "fi": "Vodka & gini",
+            "ru": "Водка и джин",
+            "de": "Wodka & Gin"
           },
           "icon": "🥃",
           "image": "",
@@ -1726,7 +1780,13 @@ window.MENU = {
           "name": "Bombay",
           "section": {
             "tr": "Votka & Cin",
-            "en": "Vodka & Gin"
+            "en": "Vodka & Gin",
+            "sv": "Vodka & gin",
+            "no": "Vodka & gin",
+            "da": "Vodka & gin",
+            "fi": "Vodka & gini",
+            "ru": "Водка и джин",
+            "de": "Wodka & Gin"
           },
           "icon": "🥃",
           "image": "",
@@ -1741,7 +1801,13 @@ window.MENU = {
           "name": "Gordon's",
           "section": {
             "tr": "Votka & Cin",
-            "en": "Vodka & Gin"
+            "en": "Vodka & Gin",
+            "sv": "Vodka & gin",
+            "no": "Vodka & gin",
+            "da": "Vodka & gin",
+            "fi": "Vodka & gini",
+            "ru": "Водка и джин",
+            "de": "Wodka & Gin"
           },
           "icon": "🥃",
           "image": "",
@@ -1756,7 +1822,13 @@ window.MENU = {
           "name": "Martini (Dry / Rosso / Bianco)",
           "section": {
             "tr": "Vermut & Bitter",
-            "en": "Vermouth & Bitter"
+            "en": "Vermouth & Bitter",
+            "sv": "Vermouth & bitter",
+            "no": "Vermut & bitter",
+            "da": "Vermouth & bitter",
+            "fi": "Vermutti & bitter",
+            "ru": "Вермут и биттер",
+            "de": "Wermut & Bitter"
           },
           "icon": "🍸",
           "image": "",
@@ -1771,7 +1843,13 @@ window.MENU = {
           "name": "Campari",
           "section": {
             "tr": "Vermut & Bitter",
-            "en": "Vermouth & Bitter"
+            "en": "Vermouth & Bitter",
+            "sv": "Vermouth & bitter",
+            "no": "Vermut & bitter",
+            "da": "Vermouth & bitter",
+            "fi": "Vermutti & bitter",
+            "ru": "Вермут и биттер",
+            "de": "Wermut & Bitter"
           },
           "icon": "🥃",
           "image": "",
@@ -1786,7 +1864,13 @@ window.MENU = {
           "name": "Jägermeister",
           "section": {
             "tr": "Vermut & Bitter",
-            "en": "Vermouth & Bitter"
+            "en": "Vermouth & Bitter",
+            "sv": "Vermouth & bitter",
+            "no": "Vermut & bitter",
+            "da": "Vermouth & bitter",
+            "fi": "Vermutti & bitter",
+            "ru": "Вермут и биттер",
+            "de": "Wermut & Bitter"
           },
           "icon": "🥃",
           "image": "",
@@ -1801,7 +1885,13 @@ window.MENU = {
           "name": "Fernet Branca",
           "section": {
             "tr": "Vermut & Bitter",
-            "en": "Vermouth & Bitter"
+            "en": "Vermouth & Bitter",
+            "sv": "Vermouth & bitter",
+            "no": "Vermut & bitter",
+            "da": "Vermouth & bitter",
+            "fi": "Vermutti & bitter",
+            "ru": "Вермут и биттер",
+            "de": "Wermut & Bitter"
           },
           "icon": "🥃",
           "image": "",
@@ -1816,7 +1906,13 @@ window.MENU = {
           "name": "Amaretto",
           "section": {
             "tr": "Likörler",
-            "en": "Liqueurs"
+            "en": "Liqueurs",
+            "sv": "Likörer",
+            "no": "Likører",
+            "da": "Likører",
+            "fi": "Liköörit",
+            "ru": "Ликёры",
+            "de": "Liköre"
           },
           "icon": "🥃",
           "image": "",
@@ -1831,7 +1927,13 @@ window.MENU = {
           "name": "Archers",
           "section": {
             "tr": "Likörler",
-            "en": "Liqueurs"
+            "en": "Liqueurs",
+            "sv": "Likörer",
+            "no": "Likører",
+            "da": "Likører",
+            "fi": "Liköörit",
+            "ru": "Ликёры",
+            "de": "Liköre"
           },
           "icon": "🍑",
           "image": "",
@@ -1846,7 +1948,13 @@ window.MENU = {
           "name": "Bailey's",
           "section": {
             "tr": "Likörler",
-            "en": "Liqueurs"
+            "en": "Liqueurs",
+            "sv": "Likörer",
+            "no": "Likører",
+            "da": "Likører",
+            "fi": "Liköörit",
+            "ru": "Ликёры",
+            "de": "Liköre"
           },
           "icon": "🥃",
           "image": "",
@@ -1861,7 +1969,13 @@ window.MENU = {
           "name": "Cointreau",
           "section": {
             "tr": "Likörler",
-            "en": "Liqueurs"
+            "en": "Liqueurs",
+            "sv": "Likörer",
+            "no": "Likører",
+            "da": "Likører",
+            "fi": "Liköörit",
+            "ru": "Ликёры",
+            "de": "Liköre"
           },
           "icon": "🍊",
           "image": "",
@@ -1876,7 +1990,13 @@ window.MENU = {
           "name": "Kahlúa",
           "section": {
             "tr": "Likörler",
-            "en": "Liqueurs"
+            "en": "Liqueurs",
+            "sv": "Likörer",
+            "no": "Likører",
+            "da": "Likører",
+            "fi": "Liköörit",
+            "ru": "Ликёры",
+            "de": "Liköre"
           },
           "icon": "🥃",
           "image": "",
@@ -1891,7 +2011,13 @@ window.MENU = {
           "name": "Safari",
           "section": {
             "tr": "Likörler",
-            "en": "Liqueurs"
+            "en": "Liqueurs",
+            "sv": "Likörer",
+            "no": "Likører",
+            "da": "Likører",
+            "fi": "Liköörit",
+            "ru": "Ликёры",
+            "de": "Liköre"
           },
           "icon": "🥃",
           "image": "",
@@ -1906,7 +2032,13 @@ window.MENU = {
           "name": "Sambuca",
           "section": {
             "tr": "Likörler",
-            "en": "Liqueurs"
+            "en": "Liqueurs",
+            "sv": "Likörer",
+            "no": "Likører",
+            "da": "Likører",
+            "fi": "Liköörit",
+            "ru": "Ликёры",
+            "de": "Liköre"
           },
           "icon": "🥃",
           "image": "",
@@ -1921,7 +2053,13 @@ window.MENU = {
           "name": "Southern Comfort",
           "section": {
             "tr": "Likörler",
-            "en": "Liqueurs"
+            "en": "Liqueurs",
+            "sv": "Likörer",
+            "no": "Likører",
+            "da": "Likører",
+            "fi": "Liköörit",
+            "ru": "Ликёры",
+            "de": "Liköre"
           },
           "icon": "🥃",
           "image": "",
@@ -1936,7 +2074,13 @@ window.MENU = {
           "name": "Tia Maria",
           "section": {
             "tr": "Likörler",
-            "en": "Liqueurs"
+            "en": "Liqueurs",
+            "sv": "Likörer",
+            "no": "Likører",
+            "da": "Likører",
+            "fi": "Liköörit",
+            "ru": "Ликёры",
+            "de": "Liköre"
           },
           "icon": "🥃",
           "image": "",
@@ -1951,7 +2095,13 @@ window.MENU = {
           "name": "Tequila",
           "section": {
             "tr": "Shotlar",
-            "en": "Shots"
+            "en": "Shots",
+            "sv": "Shots",
+            "no": "Shots",
+            "da": "Shots",
+            "fi": "Shotit",
+            "ru": "Шоты",
+            "de": "Shots"
           },
           "icon": "🥃",
           "image": "",
@@ -1966,7 +2116,13 @@ window.MENU = {
           "name": "Sambuca",
           "section": {
             "tr": "Shotlar",
-            "en": "Shots"
+            "en": "Shots",
+            "sv": "Shots",
+            "no": "Shots",
+            "da": "Shots",
+            "fi": "Shotit",
+            "ru": "Шоты",
+            "de": "Shots"
           },
           "icon": "🥃",
           "image": "",
@@ -1981,7 +2137,13 @@ window.MENU = {
           "name": "Jägermeister",
           "section": {
             "tr": "Shotlar",
-            "en": "Shots"
+            "en": "Shots",
+            "sv": "Shots",
+            "no": "Shots",
+            "da": "Shots",
+            "fi": "Shotit",
+            "ru": "Шоты",
+            "de": "Shots"
           },
           "icon": "🥃",
           "image": "",
@@ -1996,7 +2158,13 @@ window.MENU = {
           "name": "Fernet Branca",
           "section": {
             "tr": "Shotlar",
-            "en": "Shots"
+            "en": "Shots",
+            "sv": "Shots",
+            "no": "Shots",
+            "da": "Shots",
+            "fi": "Shotit",
+            "ru": "Шоты",
+            "de": "Shots"
           },
           "icon": "🥃",
           "image": "",
@@ -2011,7 +2179,13 @@ window.MENU = {
           "name": "Turkish Pepper",
           "section": {
             "tr": "Shotlar",
-            "en": "Shots"
+            "en": "Shots",
+            "sv": "Shots",
+            "no": "Shots",
+            "da": "Shots",
+            "fi": "Shotit",
+            "ru": "Шоты",
+            "de": "Shots"
           },
           "icon": "🌶️",
           "image": "",
@@ -2028,7 +2202,13 @@ window.MENU = {
           "name": "B-52",
           "section": {
             "tr": "Shotlar",
-            "en": "Shots"
+            "en": "Shots",
+            "sv": "Shots",
+            "no": "Shots",
+            "da": "Shots",
+            "fi": "Shotit",
+            "ru": "Шоты",
+            "de": "Shots"
           },
           "icon": "🥃",
           "image": "",
@@ -2043,7 +2223,13 @@ window.MENU = {
           "name": "Jager Sam",
           "section": {
             "tr": "Shotlar",
-            "en": "Shots"
+            "en": "Shots",
+            "sv": "Shots",
+            "no": "Shots",
+            "da": "Shots",
+            "fi": "Shotit",
+            "ru": "Шоты",
+            "de": "Shots"
           },
           "icon": "🥃",
           "image": "",
@@ -2058,7 +2244,13 @@ window.MENU = {
           "name": "Slippery Nipple",
           "section": {
             "tr": "Shotlar",
-            "en": "Shots"
+            "en": "Shots",
+            "sv": "Shots",
+            "no": "Shots",
+            "da": "Shots",
+            "fi": "Shotit",
+            "ru": "Шоты",
+            "de": "Shots"
           },
           "icon": "🥃",
           "image": "",
@@ -2073,7 +2265,13 @@ window.MENU = {
           "name": "Whiskey Shot",
           "section": {
             "tr": "Shotlar",
-            "en": "Shots"
+            "en": "Shots",
+            "sv": "Shots",
+            "no": "Shots",
+            "da": "Shots",
+            "fi": "Shotit",
+            "ru": "Шоты",
+            "de": "Shots"
           },
           "icon": "🥃",
           "image": "",
@@ -2088,7 +2286,13 @@ window.MENU = {
           "name": "Vodka Shot",
           "section": {
             "tr": "Shotlar",
-            "en": "Shots"
+            "en": "Shots",
+            "sv": "Shots",
+            "no": "Shots",
+            "da": "Shots",
+            "fi": "Shotit",
+            "ru": "Шоты",
+            "de": "Shots"
           },
           "icon": "🥃",
           "image": "",
@@ -2103,7 +2307,13 @@ window.MENU = {
           "name": "Gin Shot",
           "section": {
             "tr": "Shotlar",
-            "en": "Shots"
+            "en": "Shots",
+            "sv": "Shots",
+            "no": "Shots",
+            "da": "Shots",
+            "fi": "Shotit",
+            "ru": "Шоты",
+            "de": "Shots"
           },
           "icon": "🥃",
           "image": "",
@@ -2118,7 +2328,13 @@ window.MENU = {
           "name": "Hennessy",
           "section": {
             "tr": "Konyak & Brendi",
-            "en": "Cognac & Brandy"
+            "en": "Cognac & Brandy",
+            "sv": "Cognac & brandy",
+            "no": "Cognac & brandy",
+            "da": "Cognac & brandy",
+            "fi": "Konjakki & brandy",
+            "ru": "Коньяк и бренди",
+            "de": "Cognac & Brandy"
           },
           "icon": "🥃",
           "image": "",
@@ -2133,7 +2349,13 @@ window.MENU = {
           "name": "Rémy Martin",
           "section": {
             "tr": "Konyak & Brendi",
-            "en": "Cognac & Brandy"
+            "en": "Cognac & Brandy",
+            "sv": "Cognac & brandy",
+            "no": "Cognac & brandy",
+            "da": "Cognac & brandy",
+            "fi": "Konjakki & brandy",
+            "ru": "Коньяк и бренди",
+            "de": "Cognac & Brandy"
           },
           "icon": "🥃",
           "image": "",
@@ -2148,7 +2370,13 @@ window.MENU = {
           "name": "Martell",
           "section": {
             "tr": "Konyak & Brendi",
-            "en": "Cognac & Brandy"
+            "en": "Cognac & Brandy",
+            "sv": "Cognac & brandy",
+            "no": "Cognac & brandy",
+            "da": "Cognac & brandy",
+            "fi": "Konjakki & brandy",
+            "ru": "Коньяк и бренди",
+            "de": "Cognac & Brandy"
           },
           "icon": "🥃",
           "image": "",
@@ -2163,7 +2391,13 @@ window.MENU = {
           "name": "Napoleon",
           "section": {
             "tr": "Konyak & Brendi",
-            "en": "Cognac & Brandy"
+            "en": "Cognac & Brandy",
+            "sv": "Cognac & brandy",
+            "no": "Cognac & brandy",
+            "da": "Cognac & brandy",
+            "fi": "Konjakki & brandy",
+            "ru": "Коньяк и бренди",
+            "de": "Cognac & Brandy"
           },
           "icon": "🥃",
           "image": "",
