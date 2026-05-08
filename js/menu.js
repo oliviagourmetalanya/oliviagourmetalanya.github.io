@@ -1,5 +1,5 @@
 /* ============================================
-   MENÜ — Yönetim Paneli'nden 08.05.2026 17:35:10 tarihinde dışa aktarıldı
+   MENÜ — Yönetim Paneli'nden 08.05.2026 17:57:11 tarihinde dışa aktarıldı
    ============================================ */
 
 window.MENU = {
@@ -2189,7 +2189,7 @@ window.MENU = {
           },
           "icon": "🌶️",
           "image": "",
-          "price": 420,
+          "price": 0,
           "description": "Türk biberi shot",
           "translations": {
             "en": "Turkish Pepper shot"
@@ -2212,7 +2212,7 @@ window.MENU = {
           },
           "icon": "🥃",
           "image": "",
-          "price": 445,
+          "price": 0,
           "description": "Kahlúa, Bailey's, Cointreau",
           "translations": {
             "en": "Kahlúa, Bailey's, Cointreau"
@@ -2530,7 +2530,7 @@ window.MENU = {
           "name": "Blue Hawaii",
           "icon": "🍹",
           "image": "",
-          "price": 625,
+          "price": 595,
           "description": "Bacardi, Malibu, blue curaçao, ananas suyu, buz",
           "translations": {
             "en": "Bacardi, Malibu, blue curaçao, pineapple juice, ice"
@@ -2541,7 +2541,7 @@ window.MENU = {
           "name": "Turkish Delight",
           "icon": "🍦",
           "image": "",
-          "price": 625,
+          "price": 635,
           "description": "Vanilya, dondurma, Bailey's, Cointreau, Kahlúa, süt, krema, kırılmış buz",
           "translations": {
             "en": "Vanilla, ice cream, Bailey's, Cointreau, Kahlúa, milk, cream, crushed ice"
@@ -2554,7 +2554,7 @@ window.MENU = {
           "name": "Blue Lagoon",
           "icon": "🍹",
           "image": "",
-          "price": 525,
+          "price": 560,
           "description": "Votka, blue curaçao, lime, sprite, buz",
           "translations": {
             "en": "Vodka, blue curaçao, lime, sprite, ice"
@@ -2587,7 +2587,7 @@ window.MENU = {
           "name": "Apple Martini",
           "icon": "🍸",
           "image": "",
-          "price": 845,
+          "price": 555,
           "description": "Smirnoff, şeftali likörü, acı elma suyu, buz",
           "translations": {
             "en": "Smirnoff, peach schnapps, bitter apple juice, ice"
@@ -2598,7 +2598,7 @@ window.MENU = {
           "name": "Ocean Storm",
           "icon": "🍹",
           "image": "",
-          "price": 645,
+          "price": 845,
           "description": "Votka, Bacardi, blue curaçao, Archers, Cointreau, Red Bull, lime, buz",
           "translations": {
             "en": "Vodka, Bacardi, blue curaçao, Archers, Cointreau, Red Bull, lime, ice"
@@ -2611,7 +2611,7 @@ window.MENU = {
           "name": "Scarlet O'Hara",
           "icon": "🍸",
           "image": "",
-          "price": 525,
+          "price": 560,
           "description": "Southern Comfort, limon, kızılcık suyu, buz",
           "translations": {
             "en": "Southern Comfort, lemon, cranberry juice, ice"
@@ -2622,7 +2622,7 @@ window.MENU = {
           "name": "P.S. I Love U",
           "icon": "🍸",
           "image": "",
-          "price": 645,
+          "price": 595,
           "description": "Bailey's, Kahlúa, Amaretto, süt, krema, buz",
           "translations": {
             "en": "Bailey's, Kahlúa, Amaretto, milk, cream, ice"
@@ -2644,7 +2644,7 @@ window.MENU = {
           "name": "Cosmopolitan",
           "icon": "🍸",
           "image": "",
-          "price": 565,
+          "price": 595,
           "description": "Smirnoff votka, Cointreau, limon suyu, kızılcık suyu, buz",
           "translations": {
             "en": "Smirnoff vodka, Cointreau, lemon juice, cranberry juice, ice"
@@ -2655,7 +2655,7 @@ window.MENU = {
           "name": "Pina Colada",
           "icon": "🥥",
           "image": "",
-          "price": 545,
+          "price": 650,
           "description": "Bacardi, Malibu, hindistan cevizi sütü, hindistan cevizi kreması, ananas suyu, hindistan cevizi şurubu, buz",
           "translations": {
             "en": "Bacardi, Malibu, coconut milk, coconut cream, pineapple juice, coconut syrup, ice"
@@ -2747,7 +2747,7 @@ window.MENU = {
           "name": "Aperol Spritz",
           "icon": "🍸",
           "image": "",
-          "price": 595,
+          "price": 590,
           "description": "Aperol, prosecco, soda, buz",
           "translations": {
             "en": "Aperol, prosecco, soda, ice"
