@@ -318,12 +318,6 @@ html[data-view="wines"] #winesView {
   transition: transform 0.08s ease-out, border-color 0.1s, filter 0.1s, box-shadow 0.1s;
 }
 
-/* All home-page panels: same dark teal/petrol gradient (matches Wi-Fi card) */
-.menu-btn[data-view="food"],
-.menu-btn[data-view="drinks"],
-.menu-btn[data-view="wines"] {
-  background: linear-gradient(135deg, #0e2a30 0%, #081820 100%);
-}
 .menu-btn:active .btn-arrow {
   transform: translateX(8px) scale(1.08);
   color: var(--accent-hi);
@@ -384,7 +378,7 @@ html[data-view="wines"] #winesView {
 
 /* Info / Wi-Fi card */
 .info-card {
-  background: linear-gradient(135deg, #0e2a30 0%, #081820 100%);
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 60%, var(--bg-elev) 100%);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 18px 20px;
@@ -742,9 +736,17 @@ html[data-view="wines"] #winesView {
   box-shadow: 0 2px 8px rgba(201, 169, 110, 0.25);
 }
 
-.category-section { margin-bottom: 8px; }
+.category-section {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-bottom: 8px;
+}
 
 .category-section + .category-section { margin-top: 24px; }
+/* Reset margins inside flex section — gap handles all spacing */
+.category-section .category-title,
+.category-section .category-note { margin-bottom: 0; }
 
 .category-title {
   font-family: 'Cormorant Garamond', serif;
