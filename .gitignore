@@ -1,0 +1,14 @@
+# Claude Code workspace
+.claude/
+
+# Menu source photos (private — not for the website)
+menuCekim/
+
+# Common OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/

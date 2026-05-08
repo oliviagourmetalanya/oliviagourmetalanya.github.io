@@ -1,0 +1,854 @@
+/* ============================================
+   Olivia Gourmet Restaurant — QR Menu Styles
+   ============================================ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --bg: #0f0e0c;
+  --bg-elev: #14120f;
+  --surface: #1a1815;
+  --surface-2: #221f1b;
+  --text: #f4ede0;
+  --text-muted: #a8a092;
+  --text-dim: #6b665d;
+  --accent: #c9a96e;
+  --accent-hi: #e0c590;
+  --accent-dark: #a8895a;
+  --olive: #6b7a3a;
+  --border: #2a2622;
+  --border-hi: #3a342d;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 20px;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background:
+    radial-gradient(ellipse 80% 50% at top, rgba(201, 169, 110, 0.07), transparent 60%),
+    radial-gradient(ellipse 60% 40% at bottom, rgba(107, 122, 58, 0.05), transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
+  /* Topbar handles its own safe-area inset via padding-top.
+     Adding it here too would double the offset on notched phones. */
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ============================================
+   Top bar
+   ============================================ */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  padding-top: calc(12px + env(safe-area-inset-top));
+  background: rgba(15, 14, 12, 0.85);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  border-bottom: 1px solid var(--border);
+}
+
+.back-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: transform 0.2s, background 0.2s, opacity 0.2s;
+}
+
+.back-btn svg { width: 20px; height: 20px; }
+.back-btn.visible { visibility: visible; opacity: 1; }
+.back-btn:active { transform: scale(0.92); background: var(--surface-2); }
+
+/* Language switcher */
+.lang-switcher { position: relative; }
+
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.lang-btn:hover { border-color: var(--border-hi); }
+.lang-btn:active { background: var(--surface-2); }
+
+.lang-flag {
+  font-size: 18px;
+  line-height: 1;
+  display: inline-block;
+}
+.lang-code { letter-spacing: 0.5px; font-weight: 600; }
+.chev {
+  width: 14px;
+  height: 14px;
+  opacity: 0.6;
+  transition: transform 0.2s;
+}
+.lang-btn.open .chev { transform: rotate(180deg); }
+
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--surface);
+  border: 1px solid var(--border-hi);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 6px;
+  display: none;
+  min-width: 200px;
+  max-height: 70vh;
+  overflow-y: auto;
+  animation: dropFade 0.2s ease;
+}
+
+.lang-dropdown.open { display: block; }
+
+@keyframes dropFade {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--text);
+  text-align: left;
+  font-size: 15px;
+  transition: background 0.15s;
+}
+
+.lang-option .lang-flag { font-size: 20px; }
+.lang-option:hover { background: var(--surface-2); }
+.lang-option.active { background: var(--surface-2); color: var(--accent); }
+.lang-option.active::after {
+  content: '✓';
+  margin-left: auto;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ============================================
+   Views
+   ============================================ */
+
+main { min-height: calc(100vh - 64px); }
+
+.view {
+  display: none;
+  padding: 20px 20px 60px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.view.active {
+  display: block;
+  animation: viewFade 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes viewFade {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   Home view
+   ============================================ */
+
+.brand {
+  text-align: center;
+  padding: 32px 0 28px;
+}
+
+.brand-mark {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 4px 12px rgba(201, 169, 110, 0.2));
+}
+.brand-mark svg { width: 100%; height: 100%; }
+
+.brand-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 56px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 2px;
+  line-height: 1;
+  background: linear-gradient(180deg, var(--accent-hi) 0%, var(--accent) 60%, var(--accent-dark) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-tagline {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 28px 0;
+}
+
+.menu-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 22px;
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 18px;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.menu-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(201, 169, 110, 0.06) 100%);
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+.menu-btn:hover { border-color: var(--accent-dark); }
+.menu-btn:hover::before { opacity: 1; }
+.menu-btn:active { transform: scale(0.98); }
+
+.btn-icon-wrap {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+}
+.btn-icon-wrap svg { width: 26px; height: 26px; }
+
+.btn-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.btn-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--text);
+}
+
+.btn-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.3px;
+}
+
+.btn-arrow {
+  color: var(--accent);
+  font-size: 22px;
+  font-weight: 300;
+  transition: transform 0.2s;
+}
+.menu-btn:hover .btn-arrow { transform: translateX(3px); }
+
+/* Info / Wi-Fi card */
+.info-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom: 20px;
+}
+
+.info-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+.info-label svg { width: 16px; height: 16px; }
+
+.wifi-rows { display: flex; flex-direction: column; gap: 4px; }
+
+.wifi-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  gap: 12px;
+}
+
+.wifi-key {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.wifi-value {
+  color: var(--text);
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.wifi-copy {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  color: var(--text);
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+}
+
+.wifi-copy:hover { border-color: var(--accent-dark); }
+.wifi-copy:active { transform: scale(0.96); }
+.wifi-copy svg { width: 14px; height: 14px; opacity: 0.7; }
+
+/* Social */
+.social { text-align: center; margin: 28px 0 16px; }
+
+.social-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.social-link {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  transition: transform 0.2s, border-color 0.2s, color 0.2s, background 0.2s;
+}
+.social-link svg { width: 22px; height: 22px; }
+.social-link:active { transform: scale(0.92); }
+.social-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--surface-2);
+}
+
+.footer-mark {
+  text-align: center;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* ============================================
+   Menu views (food / drinks)
+   ============================================ */
+
+.view-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 38px;
+  font-weight: 600;
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: 24px;
+  padding-top: 8px;
+  letter-spacing: 1.5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.title-ornament {
+  font-size: 16px;
+  color: var(--accent-dark);
+  opacity: 0.6;
+  letter-spacing: 12px;
+  margin-left: 12px;
+}
+
+.categories {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 10px 20px 10px;
+  margin: 0 -20px 16px;
+  scroll-snap-type: x proximity;
+  position: sticky;
+  top: var(--topbar-height, 64px);
+  background: rgba(15, 14, 12, 0.92);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid var(--border);
+  z-index: 50;
+  /* Desktop: thin gold scrollbar so users discover scrolling */
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-dark) transparent;
+}
+.categories::-webkit-scrollbar { height: 4px; }
+.categories::-webkit-scrollbar-track { background: transparent; }
+.categories::-webkit-scrollbar-thumb {
+  background: var(--accent-dark);
+  border-radius: 2px;
+}
+.categories::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+/* Mobile (touch only): hide scrollbar completely — swipe is intuitive */
+@media (hover: none) and (pointer: coarse) {
+  .categories { scrollbar-width: none; }
+  .categories::-webkit-scrollbar { display: none; }
+}
+
+.category-btn {
+  flex-shrink: 0;
+  padding: 9px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  scroll-snap-align: start;
+  transition: all 0.2s;
+}
+
+.category-btn:hover { color: var(--text); border-color: var(--border-hi); }
+.category-btn.active {
+  background: linear-gradient(135deg, var(--accent-hi), var(--accent));
+  color: var(--bg);
+  border-color: var(--accent);
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(201, 169, 110, 0.2);
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.category-note {
+  background: linear-gradient(135deg, var(--surface), var(--surface-2));
+  border-left: 3px solid var(--accent);
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 0.2px;
+}
+.category-section .category-note { margin-top: 4px; margin-bottom: 14px; }
+
+/* ============================================
+   Item subsection header (e.g. RUMS / VODKA & GIN under Import Drinks)
+   ============================================ */
+.item-section {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: linear-gradient(90deg, var(--surface) 0%, var(--surface-2) 50%, var(--surface) 100%);
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  margin: 14px 0 4px;
+  text-align: center;
+  position: relative;
+}
+.item-section::before,
+.item-section::after {
+  content: '◆';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--accent-dark);
+  font-size: 8px;
+  letter-spacing: 0;
+}
+.item-section::before { left: 14px; }
+.item-section::after { right: 14px; }
+.item-section:first-child { margin-top: 0; }
+
+/* ============================================
+   Drinks alcoholic / non-alcoholic filter
+   ============================================ */
+.drinks-filter {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 4px;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.drinks-filter .filter-btn {
+  flex: 1;
+  padding: 9px 14px;
+  border: none;
+  background: transparent;
+  border-radius: 20px;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.drinks-filter .filter-btn:hover {
+  color: var(--text);
+}
+.drinks-filter .filter-btn.active {
+  background: linear-gradient(135deg, var(--accent-hi), var(--accent));
+  color: var(--bg);
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(201, 169, 110, 0.25);
+}
+
+.category-section { margin-bottom: 8px; }
+
+.category-section + .category-section { margin-top: 24px; }
+
+.category-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 14px;
+  letter-spacing: 0.8px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 4px;
+}
+
+.category-title::before,
+.category-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-hi), transparent);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.item:hover { border-color: var(--border-hi); }
+
+.item-image {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  background: var(--surface-2);
+  display: block;
+}
+
+.item-image-placeholder {
+  width: 110px;
+  height: 110px;
+  background: linear-gradient(135deg, var(--surface-2), var(--bg-elev));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 38px;
+  border-right: 1px solid var(--border);
+}
+
+.item-body {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.item-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.3px;
+  line-height: 1.2;
+}
+
+.item-price-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.item-price {
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 15px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.item-price-sub {
+  font-size: 10px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  font-weight: 500;
+}
+
+.item-wine-meta {
+  font-size: 12px;
+  color: var(--accent-dark);
+  letter-spacing: 0.3px;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.item-wine-grape {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-style: italic;
+  letter-spacing: 0.2px;
+  margin-top: 1px;
+}
+
+.item-wine .item-name {
+  font-size: 18px;
+}
+
+.item-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.item-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 2px;
+}
+
+.item-tag {
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: var(--bg-elev);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  font-weight: 600;
+}
+.item-tag.veg { color: var(--olive); border-color: rgba(107, 122, 58, 0.3); }
+.item-tag.spicy { color: #d4824a; border-color: rgba(212, 130, 74, 0.3); }
+.item-tag.new { color: var(--accent); border-color: rgba(201, 169, 110, 0.3); }
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+}
+
+/* ============================================
+   Preview banner
+   ============================================ */
+
+[data-preview="1"] body::before {
+  content: '⌘ Önizleme — taslak veriler · Preview mode';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: linear-gradient(90deg, var(--accent-dark), var(--accent), var(--accent-dark));
+  color: var(--bg);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 4px;
+  pointer-events: none;
+}
+[data-preview="1"] .topbar { top: 22px; }
+
+/* ============================================
+   Toast
+   ============================================ */
+
+.toast {
+  position: fixed;
+  bottom: 32px;
+  bottom: calc(32px + env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%) translateY(120px);
+  background: linear-gradient(135deg, var(--accent-hi), var(--accent));
+  color: var(--bg);
+  padding: 12px 22px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 200;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: var(--shadow-md);
+  pointer-events: none;
+}
+
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media (min-width: 768px) {
+  .view { padding: 32px 24px 80px; }
+  .brand-name { font-size: 72px; }
+  .view-title { font-size: 48px; }
+  .item { grid-template-columns: 140px 1fr; }
+  .item-image, .item-image-placeholder { width: 140px; height: 140px; }
+  .item-image-placeholder { font-size: 48px; }
+  .item-name { font-size: 21px; }
+}
+
+/* Small phones */
+@media (max-width: 360px) {
+  .view { padding: 16px 14px 40px; }
+  .brand-name { font-size: 48px; }
+  .menu-btn { padding: 18px 16px; gap: 12px; }
+  .btn-icon-wrap { width: 44px; height: 44px; }
+  .btn-icon-wrap svg { width: 22px; height: 22px; }
+  .btn-label { font-size: 19px; }
+  .item { grid-template-columns: 90px 1fr; }
+  .item-image, .item-image-placeholder { width: 90px; height: 90px; }
+}

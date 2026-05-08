@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Kod — Olivia Gourmet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: #1a1815;
+      color: #f4ede0;
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* Top bar (admin tools — hidden on print) */
+    .toolbar {
+      position: sticky;
+      top: 0;
+      background: #14120f;
+      border-bottom: 1px solid #2a2622;
+      padding: 14px 24px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      z-index: 10;
+    }
+    .toolbar h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      color: #c9a96e;
+      flex: 1;
+      min-width: 200px;
+    }
+    .toolbar input[type="text"] {
+      flex: 2;
+      min-width: 280px;
+      padding: 9px 14px;
+      background: #1a1815;
+      border: 1px solid #2a2622;
+      border-radius: 8px;
+      color: #f4ede0;
+      font-size: 13px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .toolbar input:focus { outline: none; border-color: #c9a96e; }
+    .toolbar button {
+      padding: 9px 16px;
+      border-radius: 8px;
+      border: 1px solid #2a2622;
+      background: #1a1815;
+      color: #f4ede0;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .toolbar button:hover { border-color: #c9a96e; color: #c9a96e; }
+    .toolbar button.primary {
+      background: linear-gradient(135deg, #e0c590, #c9a96e);
+      color: #14120f;
+      border-color: #c9a96e;
+    }
+    .help {
+      width: 100%;
+      font-size: 12px;
+      color: #a8a092;
+      padding-top: 4px;
+    }
+    .help code {
+      background: #1a1815;
+      padding: 1px 6px;
+      border-radius: 4px;
+      color: #c9a96e;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* The print card */
+    .print-area {
+      max-width: 540px;
+      margin: 40px auto;
+      padding: 50px 40px;
+      background: #fff;
+      color: #14120f;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+    }
+
+    .brand {
+      margin-bottom: 28px;
+    }
+    .brand-mark {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 8px;
+    }
+    .brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px;
+      font-weight: 600;
+      color: #14120f;
+      letter-spacing: 2px;
+      line-height: 1;
+    }
+    .brand-tagline {
+      font-size: 11px;
+      color: #6b665d;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      margin-top: 6px;
+      font-weight: 600;
+    }
+
+    .qr-frame {
+      width: 320px;
+      height: 320px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #fff;
+      border: 2px solid #14120f;
+      border-radius: 12px;
+      position: relative;
+    }
+    .qr-frame svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .qr-logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 4px #fff;
+    }
+    .qr-logo svg { width: 40px; height: 40px; }
+
+    .scan-label {
+      margin-top: 28px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      color: #14120f;
+    }
+    .scan-sub {
+      margin-top: 8px;
+      font-size: 11px;
+      color: #6b665d;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 500;
+      line-height: 1.8;
+    }
+    .scan-sub strong { color: #14120f; }
+
+    .corner-ornament {
+      position: relative;
+    }
+    .corner-ornament::before,
+    .corner-ornament::after {
+      content: '';
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border-color: #c9a96e;
+    }
+
+    .url-display {
+      margin-top: 24px;
+      padding: 10px;
+      background: #f9f6ee;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #6b665d;
+      word-break: break-all;
+    }
+
+    .footer-divider {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid #e7e1d3;
+      font-size: 10px;
+      color: #a8a092;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    /* Variant: 4-up sheet (small QRs for tables) */
+    .sheet-4up {
+      display: none;
+      max-width: 1120px;
+      margin: 40px auto;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .sheet-4up .print-area {
+      max-width: 100%;
+      margin: 0;
+      padding: 30px 24px;
+    }
+    .sheet-4up .brand-name { font-size: 38px; }
+    .sheet-4up .qr-frame { width: 240px; height: 240px; }
+    .sheet-4up .scan-label { font-size: 20px; letter-spacing: 6px; }
+
+    body[data-mode="4up"] .print-area:not(.sheet-4up .print-area) { display: none; }
+    body[data-mode="4up"] .sheet-4up { display: grid; }
+
+    /* Print styles */
+    @media print {
+      body { background: #fff; }
+      .toolbar { display: none; }
+      .print-area {
+        box-shadow: none;
+        border-radius: 0;
+        margin: 0 auto;
+        page-break-after: always;
+      }
+      .url-display { display: none; }
+      body[data-mode="4up"] .sheet-4up {
+        gap: 12mm;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <h1>QR Kod Üretici</h1>
+    <input type="text" id="urlInput" placeholder="https://...">
+    <button id="btnGenerate" class="primary">Oluştur</button>
+    <button id="btnSingle">Tek (büyük)</button>
+    <button id="btn4up">4'lü (masa için)</button>
+    <button id="btnPrint">🖨 Yazdır</button>
+    <button id="btnDownload">⬇ SVG indir</button>
+    <div class="help">
+      Bu sayfa <code>index.html</code>'in bulunduğu adresi otomatik algılar. Farklı bir URL için yukarıdaki kutuya yazıp <strong>Oluştur</strong>'a basın.
+      Yazdırırken tarayıcı baskı diyaloğunda <strong>"Background graphics"</strong> seçeneğini açın.
+    </div>
+  </div>
+
+  <!-- Single large QR (default) -->
+  <div class="print-area">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 64 64" fill="none">
+          <ellipse cx="32" cy="38" rx="14" ry="18" fill="#6b7a3a" opacity="0.85"/>
+          <ellipse cx="32" cy="38" rx="14" ry="18" fill="none" stroke="#c9a96e" stroke-width="1.5"/>
+          <path d="M32 20 Q 36 14 42 12" stroke="#c9a96e" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <path d="M40 14 Q 44 12 47 14 Q 44 17 40 16 Z" fill="#6b7a3a" opacity="0.7" stroke="#c9a96e" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="brand-name">Olivia</div>
+      <div class="brand-tagline">Gourmet Restaurant</div>
+    </div>
+
+    <div class="qr-frame" id="qrSingle"></div>
+
+    <div class="scan-label">Menu</div>
+    <div class="scan-sub">
+      <strong>Scan QR</strong> · Menü için tarayın · Сканировать меню<br>
+      Skanna meny · Scan meny · Speisekarte scannen
+    </div>
+
+    <div class="url-display" id="urlDisplay">—</div>
+    <div class="footer-divider">Olivia Gourmet Restaurant</div>
+  </div>
+
+  <!-- 4-up sheet (for small table cards) -->
+  <div class="sheet-4up">
+    <div class="print-area"><div class="brand"><div class="brand-name">Olivia</div><div class="brand-tagline">Gourmet</div></div><div class="qr-frame" data-qr></div><div class="scan-label">Menu</div></div>
+    <div class="print-area"><div class="brand"><div class="brand-name">Olivia</div><div class="brand-tagline">Gourmet</div></div><div class="qr-frame" data-qr></div><div class="scan-label">Menu</div></div>
+    <div class="print-area"><div class="brand"><div class="brand-name">Olivia</div><div class="brand-tagline">Gourmet</div></div><div class="qr-frame" data-qr></div><div class="scan-label">Menu</div></div>
+    <div class="print-area"><div class="brand"><div class="brand-name">Olivia</div><div class="brand-tagline">Gourmet</div></div><div class="qr-frame" data-qr></div><div class="scan-label">Menu</div></div>
+  </div>
+
+  <script>
+    const urlInput = document.getElementById('urlInput');
+    const urlDisplay = document.getElementById('urlDisplay');
+    const qrSingle = document.getElementById('qrSingle');
+
+    function defaultUrl() {
+      // Use the menu URL: same origin + /index.html (or root)
+      const o = window.location.origin;
+      const p = window.location.pathname.replace(/\/[^/]*$/, '/');
+      // If served from file://, suggest a placeholder
+      if (window.location.protocol === 'file:') {
+        return 'https://username.github.io/olivia-menu/';
+      }
+      return o + p + 'index.html';
+    }
+
+    function buildQrSvg(text) {
+      // Type 0 = auto-size, 'M' = 15% error correction (good balance)
+      const qr = qrcode(0, 'M');
+      qr.addData(text);
+      qr.make();
+      // Build SVG manually for crisp output
+      const moduleCount = qr.getModuleCount();
+      const cellSize = 1;
+      const margin = 0;
+      const size = moduleCount * cellSize + margin * 2;
+      let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" shape-rendering="crispEdges">`;
+      svg += `<rect width="${size}" height="${size}" fill="#ffffff"/>`;
+      for (let r = 0; r < moduleCount; r++) {
+        for (let c = 0; c < moduleCount; c++) {
+          if (qr.isDark(r, c)) {
+            svg += `<rect x="${c + margin}" y="${r + margin}" width="${cellSize}" height="${cellSize}" fill="#14120f"/>`;
+          }
+        }
+      }
+      svg += `</svg>`;
+      return svg;
+    }
+
+    function generate() {
+      const url = (urlInput.value || '').trim();
+      if (!url) return;
+      const svg = buildQrSvg(url);
+      qrSingle.innerHTML = svg;
+      // Add center logo overlay
+      const logo = document.createElement('div');
+      logo.className = 'qr-logo';
+      logo.innerHTML = `<svg viewBox="0 0 64 64" fill="none">
+        <ellipse cx="32" cy="38" rx="14" ry="18" fill="#6b7a3a"/>
+        <ellipse cx="32" cy="38" rx="14" ry="18" fill="none" stroke="#c9a96e" stroke-width="1.5"/>
+        <path d="M32 20 Q 36 14 42 12" stroke="#c9a96e" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <path d="M40 14 Q 44 12 47 14 Q 44 17 40 16 Z" fill="#6b7a3a" stroke="#c9a96e" stroke-width="1"/>
+      </svg>`;
+      qrSingle.appendChild(logo);
+
+      // Update 4-up cards too
+      document.querySelectorAll('[data-qr]').forEach(el => {
+        el.innerHTML = svg;
+      });
+
+      // URL display (truncate if very long)
+      urlDisplay.textContent = url;
+    }
+
+    document.getElementById('btnGenerate').addEventListener('click', generate);
+    urlInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') generate(); });
+
+    document.getElementById('btnSingle').addEventListener('click', () => {
+      document.body.dataset.mode = 'single';
+    });
+    document.getElementById('btn4up').addEventListener('click', () => {
+      document.body.dataset.mode = '4up';
+    });
+    document.getElementById('btnPrint').addEventListener('click', () => window.print());
+
+    document.getElementById('btnDownload').addEventListener('click', () => {
+      const url = (urlInput.value || '').trim();
+      if (!url) return;
+      const svg = buildQrSvg(url);
+      const blob = new Blob([svg], { type: 'image/svg+xml' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'olivia-menu-qr.svg';
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 500);
+    });
+
+    // Init
+    urlInput.value = defaultUrl();
+    generate();
+  </script>
+</body>
+</html>

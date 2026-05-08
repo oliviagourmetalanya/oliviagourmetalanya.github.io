@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0f0e0c">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Olivia Gourmet Restaurant</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="topbar" id="topbar">
+    <button class="back-btn" id="backBtn" aria-label="Back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <div class="lang-switcher">
+      <button class="lang-btn" id="langBtn" aria-label="Language">
+        <span class="lang-flag" id="currentFlag">🇹🇷</span>
+        <span class="lang-code" id="currentCode">TR</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+      <div class="lang-dropdown" id="langDropdown" role="menu"></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="view view-home active" id="homeView">
+      <div class="brand">
+        <div class="brand-mark">
+          <svg viewBox="0 0 64 64" fill="none">
+            <ellipse cx="32" cy="38" rx="14" ry="18" fill="#6b7a3a" opacity="0.85"/>
+            <ellipse cx="32" cy="38" rx="14" ry="18" fill="none" stroke="#c9a96e" stroke-width="1.5"/>
+            <path d="M32 20 Q 36 14 42 12" stroke="#c9a96e" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <path d="M40 14 Q 44 12 47 14 Q 44 17 40 16 Z" fill="#6b7a3a" opacity="0.7" stroke="#c9a96e" stroke-width="1"/>
+          </svg>
+        </div>
+        <h1 class="brand-name">Olivia</h1>
+        <p class="brand-tagline">Gourmet Restaurant</p>
+      </div>
+
+      <div class="menu-buttons">
+        <button class="menu-btn" data-view="food">
+          <span class="btn-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18"/><path d="M5 11a7 7 0 0 1 14 0"/><path d="M3 15h18l-1.5 4a2 2 0 0 1-2 1.5h-11a2 2 0 0 1-2-1.5L3 15z"/><path d="M12 4v3"/></svg>
+          </span>
+          <span class="btn-text">
+            <span class="btn-label" data-i18n="foodMenu">Yemek Menüsü</span>
+            <span class="btn-sub" data-i18n="foodSub">Mutfağımızı keşfedin</span>
+          </span>
+          <span class="btn-arrow">→</span>
+        </button>
+
+        <button class="menu-btn" data-view="drinks">
+          <span class="btn-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h14l-1.5 14a2 2 0 0 1-2 1.8H8.5a2 2 0 0 1-2-1.8L5 3z"/><path d="M5 7h14"/><path d="M12 19v3"/><path d="M9 22h6"/></svg>
+          </span>
+          <span class="btn-text">
+            <span class="btn-label" data-i18n="drinksMenu">İçecek Menüsü</span>
+            <span class="btn-sub" data-i18n="drinksSub">Seçkin içecekler</span>
+          </span>
+          <span class="btn-arrow">→</span>
+        </button>
+
+        <button class="menu-btn" data-view="wines">
+          <span class="btn-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2h4v3l1.6 2.4a4 4 0 0 1 .9 2.6V20a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2V10a4 4 0 0 1 .9-2.6L10 5V2z"/><line x1="9.5" y1="13" x2="14.5" y2="13"/></svg>
+          </span>
+          <span class="btn-text">
+            <span class="btn-label" data-i18n="winesMenu">Şarap Menüsü</span>
+            <span class="btn-sub" data-i18n="winesSub">Özenle seçilmiş</span>
+          </span>
+          <span class="btn-arrow">→</span>
+        </button>
+      </div>
+
+      <div class="info-card">
+        <div class="info-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+          <span data-i18n="wifiLabel">Wi-Fi</span>
+        </div>
+        <div class="wifi-rows">
+          <div class="wifi-row">
+            <span class="wifi-key" data-i18n="wifiNetwork">Ağ adı</span>
+            <span class="wifi-value" id="wifiSsid"></span>
+          </div>
+          <div class="wifi-row">
+            <span class="wifi-key" data-i18n="wifiPassword">Şifre</span>
+            <button class="wifi-copy" id="wifiCopy">
+              <span id="wifiPassword"></span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="social">
+        <div class="social-label" data-i18n="followUs">Bizi Takip Edin</div>
+        <div class="social-links" id="socialLinks"></div>
+      </div>
+
+      <div class="footer-mark">
+        <span data-i18n="enjoy">İyi yemekler dileriz</span>
+      </div>
+    </section>
+
+    <section class="view view-menu" id="foodView">
+      <h2 class="view-title">
+        <span class="title-ornament">⌘</span>
+        <span data-i18n="foodMenu">Yemek Menüsü</span>
+      </h2>
+      <nav class="categories" id="foodCategories"></nav>
+      <div class="items" id="foodItems"></div>
+    </section>
+
+    <section class="view view-menu" id="drinksView">
+      <h2 class="view-title">
+        <span class="title-ornament">⌘</span>
+        <span data-i18n="drinksMenu">İçecek Menüsü</span>
+      </h2>
+      <div class="drinks-filter" id="drinksFilter"></div>
+      <nav class="categories" id="drinksCategories"></nav>
+      <div class="items" id="drinksItems"></div>
+    </section>
+
+    <section class="view view-menu" id="winesView">
+      <h2 class="view-title">
+        <span class="title-ornament">⌘</span>
+        <span data-i18n="winesMenu">Şarap Menüsü</span>
+      </h2>
+      <nav class="categories" id="winesCategories"></nav>
+      <div class="items" id="winesItems"></div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

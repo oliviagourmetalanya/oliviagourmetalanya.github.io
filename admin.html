@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f0e0c">
+  <title>Yönetim Paneli — Olivia Gourmet</title>
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Veriyi mevcut menu.js / config.js / i18n.js'ten yükle -->
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/menu.js"></script>
+</head>
+<body>
+  <header class="admin-topbar">
+    <div class="brand-block">
+      <span class="brand-mark">🫒</span>
+      <div>
+        <h1>Olivia Yönetim Paneli</h1>
+        <p class="sub">Menü, ayarlar ve içerik düzenleme</p>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <span class="save-status" id="saveStatus">●&nbsp; Otomatik kaydedildi</span>
+      <button class="btn btn-ghost" id="btnPreview" title="Yeni sekmede canlı önizle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Önizle
+      </button>
+      <button class="btn btn-ghost" id="btnReload" title="menu.js dosyasından güncel veriyi yükle — taslağı sıfırlar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        Yeniden Yükle
+      </button>
+      <button class="btn btn-ghost" id="btnImport">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        İçe Aktar
+      </button>
+      <button class="btn btn-primary" id="btnExport">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Dışa Aktar
+      </button>
+    </div>
+  </header>
+
+  <nav class="admin-tabs" role="tablist">
+    <button class="tab active" data-tab="food">
+      <span class="tab-icon">🍽️</span> Yemek
+      <span class="tab-count" id="countFood">0</span>
+    </button>
+    <button class="tab" data-tab="drinks">
+      <span class="tab-icon">🥤</span> İçecek
+      <span class="tab-count" id="countDrinks">0</span>
+    </button>
+    <button class="tab" data-tab="wines">
+      <span class="tab-icon">🍷</span> Şarap
+      <span class="tab-count" id="countWines">0</span>
+    </button>
+    <button class="tab" data-tab="settings">
+      <span class="tab-icon">⚙️</span> Ayarlar
+    </button>
+    <button class="tab tab-help" data-tab="help">
+      <span class="tab-icon">?</span> Yardım
+    </button>
+  </nav>
+
+  <main class="admin-main">
+    <!-- Menu kind panels (food / drinks / wines) -->
+    <section class="panel active" id="panel-food" data-kind="food">
+      <div class="panel-header">
+        <h2>Yemek Menüsü</h2>
+        <button class="btn btn-primary btn-sm" data-action="add-category" data-kind="food">+ Yeni Kategori</button>
+      </div>
+      <div class="categories-list" id="list-food"></div>
+    </section>
+
+    <section class="panel" id="panel-drinks" data-kind="drinks">
+      <div class="panel-header">
+        <h2>İçecek Menüsü</h2>
+        <button class="btn btn-primary btn-sm" data-action="add-category" data-kind="drinks">+ Yeni Kategori</button>
+      </div>
+      <div class="categories-list" id="list-drinks"></div>
+    </section>
+
+    <section class="panel" id="panel-wines" data-kind="wines">
+      <div class="panel-header">
+        <h2>Şarap Menüsü</h2>
+        <button class="btn btn-primary btn-sm" data-action="add-category" data-kind="wines">+ Yeni Kategori</button>
+      </div>
+      <div class="categories-list" id="list-wines"></div>
+    </section>
+
+    <!-- Settings panel -->
+    <section class="panel" id="panel-settings">
+      <div class="panel-header">
+        <h2>Genel Ayarlar</h2>
+      </div>
+      <div class="settings-grid" id="settingsForm">
+        <div class="card">
+          <h3>Restoran</h3>
+          <label class="field">
+            <span>Restoran adı</span>
+            <input type="text" id="cfgName">
+          </label>
+          <label class="field">
+            <span>Alt başlık</span>
+            <input type="text" id="cfgTagline">
+          </label>
+        </div>
+
+        <div class="card">
+          <h3>Wi-Fi</h3>
+          <label class="field">
+            <span>Ağ adı (SSID)</span>
+            <input type="text" id="cfgWifiSsid" placeholder="boş bırakırsanız Wi-Fi kartı gizlenir">
+          </label>
+          <label class="field">
+            <span>Şifre</span>
+            <input type="text" id="cfgWifiPassword">
+          </label>
+        </div>
+
+        <div class="card">
+          <h3>Para Birimi & Dil</h3>
+          <label class="field">
+            <span>Para birimi sembolü</span>
+            <input type="text" id="cfgCurrency" maxlength="4">
+          </label>
+          <label class="field field-row">
+            <input type="checkbox" id="cfgCurrencyBefore">
+            <span>Sembol fiyattan önce gözüksün (örn. ₺250)</span>
+          </label>
+          <label class="field">
+            <span>Varsayılan dil (cihaz dili desteklenmediğinde)</span>
+            <select id="cfgDefaultLang"></select>
+          </label>
+        </div>
+
+        <div class="card card-wide">
+          <h3>Sosyal Medya</h3>
+          <p class="card-desc">Sürükleyerek sıralayabilir, satırı ✕ ile silebilirsiniz.</p>
+          <div id="socialList" class="social-list"></div>
+          <button class="btn btn-ghost btn-sm" id="btnAddSocial">+ Sosyal Medya Ekle</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Help panel -->
+    <section class="panel" id="panel-help">
+      <div class="panel-header"><h2>Yardım</h2></div>
+      <div class="help-grid">
+        <div class="card">
+          <h3>1 · Düzenle</h3>
+          <p>Yemek / İçecek / Şarap sekmelerinden ürünleri düzenleyin. Değişiklikler tarayıcınıza otomatik kaydedilir (taslak).</p>
+        </div>
+        <div class="card">
+          <h3>2 · Önizle</h3>
+          <p>Sağ üstteki <strong>Önizle</strong> butonuna basarak değişikliklerinizi yeni bir sekmede menü olarak görün.</p>
+        </div>
+        <div class="card">
+          <h3>3 · Dışa Aktar</h3>
+          <p>Memnun kaldığınızda <strong>Dışa Aktar</strong>'a basın. <code>menu.js</code> ve gerekirse <code>config.js</code> dosyaları indirilir.</p>
+        </div>
+        <div class="card">
+          <h3>4 · GitHub'a Yükle</h3>
+          <p>İndirdiğiniz dosyaları GitHub depo sayfanızda <code>js/</code> klasörüne sürükleyip bırakın. GitHub Pages 1-2 dakika içinde menüyü günceller.</p>
+        </div>
+        <div class="card">
+          <h3>Görseller</h3>
+          <p>Ürün düzenleme formundan görseli sürükleyin veya seçin. Görsel <strong>otomatik küçültülür</strong> (en fazla 1000px) ve menüye gömülür — ayrıca dosya yüklemeniz gerekmez.</p>
+        </div>
+        <div class="card">
+          <h3>Çeviriler</h3>
+          <p>Açıklama alanında 8 dil sekmesi vardır. Sadece Türkçe doldurursanız diğer diller İngilizce çeviriye, o da yoksa Türkçeye düşer. Eksik dil için yine de menü çalışır.</p>
+        </div>
+        <div class="card">
+          <h3>Yedek</h3>
+          <p><strong>İçe Aktar</strong> butonu ile daha önce indirdiğiniz <code>menu.js</code>'i yükleyebilirsiniz. Ayrıca tarayıcı geçmişi silindiğinde taslak kaybolabilir, önemli değişikliklerden sonra dışa aktarmayı unutmayın.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Item editor modal -->
+  <div class="modal" id="itemModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="itemModalTitle">Ürün</h3>
+        <button class="icon-btn" data-close aria-label="Kapat">✕</button>
+      </div>
+      <div class="modal-body" id="itemModalBody"></div>
+      <div class="modal-footer">
+        <button class="btn btn-danger btn-sm" id="itemDelete">Sil</button>
+        <div style="flex:1"></div>
+        <button class="btn btn-ghost btn-sm" data-close>İptal</button>
+        <button class="btn btn-primary btn-sm" id="itemSave">Kaydet</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Category editor modal -->
+  <div class="modal" id="catModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-dialog modal-sm">
+      <div class="modal-header">
+        <h3 id="catModalTitle">Kategori</h3>
+        <button class="icon-btn" data-close aria-label="Kapat">✕</button>
+      </div>
+      <div class="modal-body" id="catModalBody"></div>
+      <div class="modal-footer">
+        <button class="btn btn-danger btn-sm" id="catDelete">Sil</button>
+        <div style="flex:1"></div>
+        <button class="btn btn-ghost btn-sm" data-close>İptal</button>
+        <button class="btn btn-primary btn-sm" id="catSave">Kaydet</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Hidden file input for import -->
+  <input type="file" id="importInput" accept=".js,.json" hidden>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
