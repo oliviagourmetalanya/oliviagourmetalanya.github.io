@@ -462,15 +462,50 @@ html[data-view="wines"] #winesView {
 
 .footer-mark {
   text-align: center;
-  margin-top: 28px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border);
-  color: var(--text-dim);
-  font-size: 12px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-style: italic;
+  margin-top: 36px;
+  padding: 0;
+  border: none;
+}
+
+.footer-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin: 0 auto 18px;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.footer-rule::before,
+.footer-rule::after {
+  content: '';
+  flex: 1;
+  max-width: 130px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-dark) 50%, transparent);
+}
+
+.footer-rule span {
+  font-size: 13px;
+  letter-spacing: 0;
+  display: inline-block;
+  transform: translateY(-1px);
+}
+
+.footer-text {
   font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-style: italic;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin: 0;
+  display: inline-block;
+  background: linear-gradient(180deg, var(--accent-hi) 0%, var(--accent) 60%, var(--accent-dark) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* ============================================
