@@ -1,5 +1,5 @@
 /* ============================================
-   MENÜ — Yönetim Paneli'nden 08.05.2026 17:09:28 tarihinde dışa aktarıldı
+   MENÜ — Yönetim Paneli'nden 08.05.2026 17:35:10 tarihinde dışa aktarıldı
    ============================================ */
 
 window.MENU = {
@@ -213,7 +213,7 @@ window.MENU = {
           "name": "Mexican Burger (200g)",
           "icon": "🌶️",
           "image": "",
-          "price": 610,
+          "price": 630,
           "description": "Sotelenmiş biber, soğan, kaşar peyniri ve cips",
           "translations": {
             "en": "Sauteed peppers, onion, cheddar cheese and chips"
@@ -291,7 +291,7 @@ window.MENU = {
           "name": "Chicken Curry",
           "icon": "🍛",
           "image": "",
-          "price": 710,
+          "price": 720,
           "description": "Tavuk göğsü dilimleri, soğan, biber, krema köri sosu",
           "translations": {
             "en": "Chicken breast slices, onion, peppers, creamy curry sauce"
@@ -393,7 +393,7 @@ window.MENU = {
           "name": "T-Bone Steak (700g) Dry Aged",
           "icon": "🥩",
           "image": "",
-          "price": 2390,
+          "price": 2790,
           "description": "Izgara T-Bone Steak",
           "translations": {
             "en": "Grilled T-Bone Steak"
@@ -404,7 +404,7 @@ window.MENU = {
           "name": "Dallas Steak (600g) Dry Aged",
           "icon": "🥩",
           "image": "",
-          "price": 2390,
+          "price": 2790,
           "description": "Izgara Dallas Steak",
           "translations": {
             "en": "Grilled Dallas Steak"
@@ -443,7 +443,7 @@ window.MENU = {
           "name": "Olivia Special (400g)",
           "icon": "🥩",
           "image": "",
-          "price": 1490,
+          "price": 3490,
           "description": "Bonfile, soslar ile",
           "translations": {
             "en": "The best cut of fillet steak with sauces"
@@ -467,7 +467,7 @@ window.MENU = {
           "name": "Filet Mignon (300g)",
           "icon": "🥩",
           "image": "",
-          "price": 2195,
+          "price": 2395,
           "description": "Bonfile yanında bearnez sos ile",
           "translations": {
             "en": "The best cut of fillet steak with bearnaise sauce on side"
@@ -668,7 +668,7 @@ window.MENU = {
           "name": "King Prawns (Jumbo)",
           "icon": "🦐",
           "image": "",
-          "price": 1295,
+          "price": 1395,
           "description": "Taze yeşillik, salata ve patates · 1 gün önceden sipariş ediniz",
           "translations": {
             "en": "Fresh greens, salad and potatoes · Order 1 day before"
@@ -1026,7 +1026,7 @@ window.MENU = {
           "name": "Coffee Latte",
           "icon": "☕",
           "image": "",
-          "price": 145,
+          "price": 195,
           "description": "Espresso ve bol süt",
           "translations": {
             "en": "Espresso with steamed milk"
@@ -1037,7 +1037,7 @@ window.MENU = {
           "name": "Espresso",
           "icon": "☕",
           "image": "",
-          "price": 195,
+          "price": 155,
           "description": "Tek shot İtalyan usulü espresso",
           "translations": {
             "en": "Single shot Italian espresso"
@@ -1048,7 +1048,7 @@ window.MENU = {
           "name": "Double Espresso",
           "icon": "☕",
           "image": "",
-          "price": 210,
+          "price": 310,
           "description": "Çift shot espresso",
           "translations": {
             "en": "Double shot espresso"
@@ -1356,7 +1356,7 @@ window.MENU = {
           "name": "Efes 50cl",
           "icon": "🍺",
           "image": "",
-          "price": 240,
+          "price": 260,
           "description": "",
           "translations": {
             "en": ""
@@ -1367,7 +1367,7 @@ window.MENU = {
           "name": "Efes 30cl",
           "icon": "🍺",
           "image": "",
-          "price": 200,
+          "price": 240,
           "description": "",
           "translations": {
             "en": ""
@@ -1378,7 +1378,7 @@ window.MENU = {
           "name": "Efes Malt 50cl",
           "icon": "🍺",
           "image": "",
-          "price": 240,
+          "price": 260,
           "description": "",
           "translations": {
             "en": ""
@@ -1389,7 +1389,7 @@ window.MENU = {
           "name": "Non-Alcohol Beer 33cl",
           "icon": "🍺",
           "image": "",
-          "price": 240,
+          "price": 260,
           "description": "Alkolsüz bira",
           "translations": {
             "en": "Non-alcoholic beer"
@@ -1400,7 +1400,7 @@ window.MENU = {
           "name": "Gluten Free Beer 50cl",
           "icon": "🍺",
           "image": "",
-          "price": 260,
+          "price": 320,
           "description": "Glutensiz bira",
           "translations": {
             "en": "Gluten-free beer"
@@ -1411,7 +1411,7 @@ window.MENU = {
           "name": "Budweiser 33cl",
           "icon": "🍺",
           "image": "",
-          "price": 320,
+          "price": 0,
           "description": "",
           "translations": {
             "en": ""
@@ -1470,7 +1470,7 @@ window.MENU = {
           "name": "Liqueurs",
           "icon": "🥃",
           "image": "",
-          "price": 380,
+          "price": 0,
           "description": "Yerli likörler, tek 380 ₺ · duble 700 ₺",
           "translations": {
             "en": "Local liqueurs, single 380 ₺ · double 700 ₺"
@@ -1525,7 +1525,7 @@ window.MENU = {
           "name": "Vodka / Gin with Soft Drink",
           "icon": "🥃",
           "image": "",
-          "price": 425,
+          "price": 495,
           "description": "Votka veya cin + soft içecek",
           "translations": {
             "en": "Vodka or gin with soft drink"
@@ -1577,7 +1577,7 @@ window.MENU = {
           "name": "Jack Daniel's",
           "icon": "🥃",
           "image": "",
-          "price": 575,
+          "price": 520,
           "description": "",
           "translations": {
             "en": ""
@@ -1599,7 +1599,7 @@ window.MENU = {
           "name": "Chivas Regal",
           "icon": "🥃",
           "image": "",
-          "price": 540,
+          "price": 580,
           "description": "",
           "translations": {
             "en": ""
@@ -1610,7 +1610,7 @@ window.MENU = {
           "name": "Jameson",
           "icon": "🥃",
           "image": "",
-          "price": 320,
+          "price": 520,
           "description": "",
           "translations": {
             "en": ""
@@ -1685,7 +1685,7 @@ window.MENU = {
           },
           "icon": "🥥",
           "image": "",
-          "price": 475,
+          "price": 430,
           "description": "Hindistan cevizi aromalı rom",
           "translations": {
             "en": "Coconut-flavored rum"
@@ -1715,7 +1715,7 @@ window.MENU = {
           },
           "icon": "🥃",
           "image": "",
-          "price": 445,
+          "price": 430,
           "description": "",
           "translations": {
             "en": ""
@@ -1730,7 +1730,7 @@ window.MENU = {
           },
           "icon": "🥃",
           "image": "",
-          "price": 475,
+          "price": 485,
           "description": "Bombay Sapphire",
           "translations": {
             "en": "Bombay Sapphire gin"
@@ -1865,7 +1865,7 @@ window.MENU = {
           },
           "icon": "🍊",
           "image": "",
-          "price": 445,
+          "price": 0,
           "description": "Portakal likörü",
           "translations": {
             "en": "Orange liqueur"
