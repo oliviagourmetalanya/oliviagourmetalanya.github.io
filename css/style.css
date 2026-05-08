@@ -538,7 +538,7 @@ main { min-height: calc(100vh - 64px); }
 .items {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 22px;
 }
 
 .category-note {
