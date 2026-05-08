@@ -706,8 +706,10 @@
       }, { passive: false });
     });
 
-    // Menu buttons (home -> food/drinks)
-    document.querySelectorAll('[data-view]').forEach(btn => {
+    // Menu buttons (home -> food/drinks/wines).
+    // Scope to .menu-btn so we don't accidentally attach this to <html>,
+    // which now also carries a data-view attribute for routing-aware CSS.
+    document.querySelectorAll('.menu-btn[data-view]').forEach(btn => {
       btn.addEventListener('click', () => navigate(btn.dataset.view));
     });
 
