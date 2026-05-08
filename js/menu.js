@@ -1,5 +1,5 @@
 /* ============================================
-   MENÜ — Yönetim Paneli'nden 08.05.2026 17:57:11 tarihinde dışa aktarıldı
+   MENÜ — Yönetim Paneli'nden 08.05.2026 18:02:44 tarihinde dışa aktarıldı
    ============================================ */
 
 window.MENU = {
@@ -2189,7 +2189,7 @@ window.MENU = {
           },
           "icon": "🌶️",
           "image": "",
-          "price": 0,
+          "price": 420,
           "description": "Türk biberi shot",
           "translations": {
             "en": "Turkish Pepper shot"
@@ -2212,7 +2212,7 @@ window.MENU = {
           },
           "icon": "🥃",
           "image": "",
-          "price": 0,
+          "price": 445,
           "description": "Kahlúa, Bailey's, Cointreau",
           "translations": {
             "en": "Kahlúa, Bailey's, Cointreau"
@@ -2530,7 +2530,7 @@ window.MENU = {
           "name": "Blue Hawaii",
           "icon": "🍹",
           "image": "",
-          "price": 595,
+          "price": 625,
           "description": "Bacardi, Malibu, blue curaçao, ananas suyu, buz",
           "translations": {
             "en": "Bacardi, Malibu, blue curaçao, pineapple juice, ice"
@@ -2541,7 +2541,7 @@ window.MENU = {
           "name": "Turkish Delight",
           "icon": "🍦",
           "image": "",
-          "price": 635,
+          "price": 625,
           "description": "Vanilya, dondurma, Bailey's, Cointreau, Kahlúa, süt, krema, kırılmış buz",
           "translations": {
             "en": "Vanilla, ice cream, Bailey's, Cointreau, Kahlúa, milk, cream, crushed ice"
@@ -2554,7 +2554,7 @@ window.MENU = {
           "name": "Blue Lagoon",
           "icon": "🍹",
           "image": "",
-          "price": 560,
+          "price": 525,
           "description": "Votka, blue curaçao, lime, sprite, buz",
           "translations": {
             "en": "Vodka, blue curaçao, lime, sprite, ice"
@@ -2587,7 +2587,7 @@ window.MENU = {
           "name": "Apple Martini",
           "icon": "🍸",
           "image": "",
-          "price": 555,
+          "price": 845,
           "description": "Smirnoff, şeftali likörü, acı elma suyu, buz",
           "translations": {
             "en": "Smirnoff, peach schnapps, bitter apple juice, ice"
@@ -2598,7 +2598,7 @@ window.MENU = {
           "name": "Ocean Storm",
           "icon": "🍹",
           "image": "",
-          "price": 845,
+          "price": 645,
           "description": "Votka, Bacardi, blue curaçao, Archers, Cointreau, Red Bull, lime, buz",
           "translations": {
             "en": "Vodka, Bacardi, blue curaçao, Archers, Cointreau, Red Bull, lime, ice"
@@ -2611,7 +2611,7 @@ window.MENU = {
           "name": "Scarlet O'Hara",
           "icon": "🍸",
           "image": "",
-          "price": 560,
+          "price": 525,
           "description": "Southern Comfort, limon, kızılcık suyu, buz",
           "translations": {
             "en": "Southern Comfort, lemon, cranberry juice, ice"
@@ -2622,7 +2622,7 @@ window.MENU = {
           "name": "P.S. I Love U",
           "icon": "🍸",
           "image": "",
-          "price": 595,
+          "price": 645,
           "description": "Bailey's, Kahlúa, Amaretto, süt, krema, buz",
           "translations": {
             "en": "Bailey's, Kahlúa, Amaretto, milk, cream, ice"
@@ -2644,7 +2644,7 @@ window.MENU = {
           "name": "Cosmopolitan",
           "icon": "🍸",
           "image": "",
-          "price": 595,
+          "price": 565,
           "description": "Smirnoff votka, Cointreau, limon suyu, kızılcık suyu, buz",
           "translations": {
             "en": "Smirnoff vodka, Cointreau, lemon juice, cranberry juice, ice"
@@ -2655,7 +2655,7 @@ window.MENU = {
           "name": "Pina Colada",
           "icon": "🥥",
           "image": "",
-          "price": 650,
+          "price": 545,
           "description": "Bacardi, Malibu, hindistan cevizi sütü, hindistan cevizi kreması, ananas suyu, hindistan cevizi şurubu, buz",
           "translations": {
             "en": "Bacardi, Malibu, coconut milk, coconut cream, pineapple juice, coconut syrup, ice"
@@ -2747,7 +2747,7 @@ window.MENU = {
           "name": "Aperol Spritz",
           "icon": "🍸",
           "image": "",
-          "price": 590,
+          "price": 595,
           "description": "Aperol, prosecco, soda, buz",
           "translations": {
             "en": "Aperol, prosecco, soda, ice"
@@ -2849,7 +2849,7 @@ window.MENU = {
           "icon": "🍷",
           "image": "",
           "glassPrice": null,
-          "bottlePrice": 2295,
+          "bottlePrice": null,
           "description": "Çikolata ve vanilya aromaları, orta gövdeli, vanilya-karamel notalı kalıcı tat. Spaghetti Bolognese, peynir, biftek-patates, pirinç esaslı yemekler ve yoğun soslarla önerilir",
           "translations": {
             "en": "Remarkable with chocolate and vanilla aromas; mid-bodied and persistent with vanilla-caramel notes. Highly recommended with Spaghetti Bolognese, cheeses, steak and french fries, rice-based dishes and strong-flavoured sauces"
@@ -2865,7 +2865,7 @@ window.MENU = {
           "icon": "🍷",
           "image": "",
           "glassPrice": null,
-          "bottlePrice": 2495,
+          "bottlePrice": null,
           "description": "Kırmızı erik gibi taze meyveli, kalıcı aromalarıyla canlı ve dikkat çekici. Mantar soslu bonfile, ızgara tavuk, sucuklu pizza ve yumuşak peynirlerle mükemmel uyum",
           "translations": {
             "en": "Juicy with fresh fruit like red plum; remarkable and live with persistent aromas. Perfectly matches with mushroom sauced tenderloin, grilled chicken, pepperoni pizza and soft cheeses"
@@ -3057,7 +3057,7 @@ window.MENU = {
           "icon": "🌸",
           "image": "",
           "glassPrice": null,
-          "bottlePrice": 1650,
+          "bottlePrice": null,
           "description": "Çilek ve ahududu gibi taze kırmızı meyve aromaları, yoğun ve kalıcı, çok iyi dengeli ve canlı. Izgara balık ve tavuk, hafif baharatlı pizza ve makarnalarla iyi gider",
           "translations": {
             "en": "Pronounced with fresh red fruits like strawberry and raspberry; intense and persistent flavours, very well balanced and lively. Grilled fish and chicken, lightly spiced pizza and pastas"
@@ -3199,7 +3199,7 @@ window.MENU = {
           "icon": "🍯",
           "image": "",
           "glassPrice": null,
-          "bottlePrice": 1650,
+          "bottlePrice": 1600,
           "description": "Narin, yuvarlak ve dengeli yoğun aromalar. 6-8 °C'de aperitif olarak veya meyve, pasta ve rokfor benzeri peynirlerle servis önerilir",
           "translations": {
             "en": "Intense flavours with delicate, round and balanced taste. Served at 6-8°C as an aperitif or with fruits, pastries and cheese like roquefort"
