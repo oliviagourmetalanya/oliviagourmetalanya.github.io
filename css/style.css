@@ -759,7 +759,7 @@ html[data-view="wines"] #winesView {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 14px 18px;
+  padding: 12px 16px;
   /* Sticky in 'All' view: stays at top below the topbar+category bar
      until the next category section pushes it up. */
   position: sticky;
@@ -771,24 +771,6 @@ html[data-view="wines"] #winesView {
   border-radius: 12px;
   margin: 0;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
-}
-
-/* Fade mask below the sticky title — items scrolling up disappear
-   gracefully into this gradient instead of popping in/out at the title edge. */
-.category-title::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: -8px;
-  right: -8px;
-  height: 28px;
-  background: linear-gradient(
-    180deg,
-    rgba(8, 14, 11, 0.85) 0%,
-    rgba(8, 14, 11, 0.5) 40%,
-    rgba(8, 14, 11, 0) 100%
-  );
-  pointer-events: none;
 }
 
 .category-title::before,
