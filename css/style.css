@@ -253,6 +253,19 @@ main { min-height: calc(100vh - 64px); }
   line-height: 1.4;
 }
 
+.brand-menu-suffix {
+  display: block;
+  margin-top: 6px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-style: italic;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  line-height: 1;
+}
+
 .menu-buttons {
   display: flex;
   flex-direction: column;
@@ -478,6 +491,22 @@ main { min-height: calc(100vh - 64px); }
   margin-left: 12px;
 }
 
+/* Wrapper holds the pill styling. overflow:hidden + border-radius clips
+   the inner scrollbar's edges so they never extend past the rounded corners. */
+.categories-wrap {
+  position: sticky;
+  top: calc(var(--topbar-height, 64px) + 10px);
+  z-index: 50;
+  margin: 10px 0 18px;
+  background: rgba(12, 20, 16, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(201, 169, 110, 0.15);
+  border-radius: 28px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
 .categories {
   display: flex;
   align-items: center;
@@ -485,19 +514,9 @@ main { min-height: calc(100vh - 64px); }
   overflow-x: auto;
   padding: 12px 26px 8px;
   scroll-padding-inline: 26px;
-  margin: 10px 0 18px;
   scroll-snap-type: x proximity;
-  position: sticky;
-  top: calc(var(--topbar-height, 64px) + 10px);
-  background: rgba(12, 20, 16, 0.7);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(201, 169, 110, 0.15);
-  border-radius: 28px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-  z-index: 50;
-  /* Thin gold scrollbar inside the pill (no end-arrow buttons that
-     stick out of the rounded corners). */
+  /* Thin gold scrollbar (no end-arrow buttons). The wrapper's border-radius
+     + overflow:hidden clips the scrollbar's left/right ends. */
   scrollbar-width: thin;
   scrollbar-color: var(--accent-dark) transparent;
 }
@@ -509,21 +528,13 @@ main { min-height: calc(100vh - 64px); }
 }
 .categories::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 .categories::-webkit-scrollbar-button { display: none; }
-/* Inset the scrollbar so it stays inside the pill's rounded area */
-.categories::-webkit-scrollbar-track-piece:start {
-  margin-left: 26px;
-}
-.categories::-webkit-scrollbar-track-piece:end {
-  margin-right: 26px;
-}
-/* Mobile (touch only): hide scrollbar, swipe is the gesture */
+/* Mobile (touch only): hide scrollbar entirely, swipe is the gesture */
 @media (hover: none) and (pointer: coarse) {
   .categories { scrollbar-width: none; }
   .categories::-webkit-scrollbar { display: none; }
 }
-/* Make sure the first/last category have visible breathing room — flex
-   sometimes ignores end padding inside scroll containers, so add explicit
-   pseudo-spacers. */
+/* Spacer pseudos so the first/last category have breathing room from the
+   pill edges (flex doesn't always honour padding-right inside scroll containers). */
 .categories::before,
 .categories::after {
   content: '';

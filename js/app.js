@@ -612,8 +612,17 @@
     const brandName = document.querySelector('.brand-name');
     const brandTag = document.querySelector('.brand-tagline');
     if (brandName) brandName.textContent = CONFIG.name;
-    // Home tagline shows the full label below the logo: "Olivia Gourmet Restaurant Menu"
-    if (brandTag) brandTag.textContent = `${CONFIG.name} ${CONFIG.tagline} Menu`;
+    // Home tagline below the logo:
+    //   OLIVIA GOURMET RESTAURANT
+    //              Menu  ← italic serif
+    if (brandTag) {
+      brandTag.textContent = '';
+      brandTag.appendChild(document.createTextNode(`${CONFIG.name} ${CONFIG.tagline}`));
+      const sub = document.createElement('span');
+      sub.className = 'brand-menu-suffix';
+      sub.textContent = 'Menu';
+      brandTag.appendChild(sub);
+    }
 
     renderLogo();
 
