@@ -38,7 +38,9 @@ html, body {
   font-size: 16px;
   line-height: 1.5;
   min-height: 100vh;
-  overflow-x: hidden;
+  /* Use 'clip' instead of 'hidden' — 'hidden' creates a scrolling context that
+     can break position:sticky on descendants. 'clip' just visually clips. */
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -736,17 +738,17 @@ html[data-view="wines"] #winesView {
   box-shadow: 0 2px 8px rgba(201, 169, 110, 0.25);
 }
 
-.category-section {
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-  margin-bottom: 8px;
-}
+.category-section { margin-bottom: 32px; }
+.category-section + .category-section { margin-top: 0; }
 
-.category-section + .category-section { margin-top: 24px; }
-/* Reset margins inside flex section — gap handles all spacing */
-.category-section .category-title,
-.category-section .category-note { margin-bottom: 0; }
+/* Spacing between items inside a section (replaces .items gap which only
+   applies to direct children) */
+.category-section .item + .item,
+.category-section .category-note + .item,
+.category-section .category-title + .item {
+  margin-top: 22px;
+}
+.category-section .category-note { margin-top: 14px; margin-bottom: 0; }
 
 .category-title {
   font-family: 'Cormorant Garamond', serif;
