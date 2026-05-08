@@ -815,17 +815,25 @@
   function resizeImage(dataUrl, maxDim, quality, cb) {
     const img = new Image();
     img.onload = () => {
-      let { width, height } = img;
-      if (width > maxDim || height > maxDim) {
-        const ratio = Math.min(maxDim / width, maxDim / height);
-        width = Math.round(width * ratio);
-        height = Math.round(height * ratio);
+      const { width, height } = img;
+      // If already a JPEG within maxDim, keep original bytes (preserves
+      // user's existing compression — re-encoding would only inflate).
+      const isJpeg = /^data:image\/jpe?g/i.test(dataUrl);
+      if (isJpeg && width <= maxDim && height <= maxDim) {
+        cb(dataUrl);
+        return;
       }
+      // Otherwise resize and re-encode as JPEG (small for food photos)
+      const ratio = (width > maxDim || height > maxDim)
+        ? Math.min(maxDim / width, maxDim / height)
+        : 1;
+      const newWidth = Math.round(width * ratio);
+      const newHeight = Math.round(height * ratio);
       const canvas = document.createElement('canvas');
-      canvas.width = width;
-      canvas.height = height;
+      canvas.width = newWidth;
+      canvas.height = newHeight;
       const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0, width, height);
+      ctx.drawImage(img, 0, 0, newWidth, newHeight);
       try {
         cb(canvas.toDataURL('image/jpeg', quality));
       } catch (e) {
@@ -1125,19 +1133,23 @@
   function resizeLogoImage(dataUrl, maxDim, transparent, cb) {
     const img = new Image();
     img.onload = () => {
-      let { width, height } = img;
-      if (width > maxDim || height > maxDim) {
-        const ratio = Math.min(maxDim / width, maxDim / height);
-        width = Math.round(width * ratio);
-        height = Math.round(height * ratio);
+      const { width, height } = img;
+      // If the image already fits within maxDim, keep the original bytes —
+      // re-encoding via canvas would inflate optimized PNGs (canvas writes
+      // 32-bit RGBA without palette quantization, often 3-5× larger).
+      if (width <= maxDim && height <= maxDim) {
+        cb(dataUrl);
+        return;
       }
+      const ratio = Math.min(maxDim / width, maxDim / height);
+      const newWidth = Math.round(width * ratio);
+      const newHeight = Math.round(height * ratio);
       const canvas = document.createElement('canvas');
-      canvas.width = width;
-      canvas.height = height;
+      canvas.width = newWidth;
+      canvas.height = newHeight;
       const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0, width, height);
+      ctx.drawImage(img, 0, 0, newWidth, newHeight);
       try {
-        // PNG to keep transparency, JPEG otherwise (smaller)
         const out = transparent
           ? canvas.toDataURL('image/png')
           : canvas.toDataURL('image/jpeg', 0.9);
