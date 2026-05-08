@@ -214,15 +214,20 @@ main { min-height: calc(100vh - 64px); }
 }
 
 .brand-mark {
-  width: 72px;
-  height: 72px;
+  width: 96px;
+  height: 96px;
   margin: 0 auto 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   filter: drop-shadow(0 4px 12px rgba(201, 169, 110, 0.2));
 }
-.brand-mark svg { width: 100%; height: 100%; }
+.brand-mark svg,
+.brand-mark .brand-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 
 .brand-name {
   font-family: 'Cormorant Garamond', serif;

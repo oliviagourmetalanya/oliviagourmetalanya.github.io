@@ -5,6 +5,7 @@
 window.CONFIG = {
   "name": "Olivia",
   "tagline": "Gourmet Restaurant",
+  "logo": "",
   "wifi": {
     "ssid": "Olivia_Gourmet_Restaurant",
     "password": "Olivia2023"

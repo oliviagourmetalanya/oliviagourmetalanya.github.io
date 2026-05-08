@@ -380,6 +380,33 @@
     // Init
     urlInput.value = defaultUrl();
     generate();
+
+    // Try to load custom logo (CONFIG.logo > images/logo.png > default SVG already in DOM)
+    (function tryLogo() {
+      const candidates = [];
+      if (window.CONFIG && window.CONFIG.logo) candidates.push(window.CONFIG.logo);
+      candidates.push('images/logo.png');
+
+      function tryNext(i) {
+        if (i >= candidates.length) return;
+        const src = candidates[i];
+        const test = new Image();
+        test.onload = () => {
+          // Apply to brand-mark in the print card
+          document.querySelectorAll('.brand-mark').forEach(mark => {
+            mark.innerHTML = '';
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = 'Logo';
+            img.style.cssText = 'width:100%;height:100%;object-fit:contain;';
+            mark.appendChild(img);
+          });
+        };
+        test.onerror = () => tryNext(i + 1);
+        test.src = src;
+      }
+      tryNext(0);
+    })();
   </script>
 </body>
 </html>

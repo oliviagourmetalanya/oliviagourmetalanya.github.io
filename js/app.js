@@ -510,6 +510,33 @@
   // ============================================
   // Init
   // ============================================
+  // Render brand logo: prefer CONFIG.logo (data URL or path), then images/logo.png,
+  // and finally fall back to the inline SVG already in the markup.
+  function renderLogo() {
+    const mark = document.querySelector('.brand-mark');
+    if (!mark) return;
+    const candidates = [];
+    if (CONFIG.logo) candidates.push(CONFIG.logo);
+    candidates.push('images/logo.png');
+
+    function tryNext(i) {
+      if (i >= candidates.length) return; // keep default SVG
+      const src = candidates[i];
+      const img = new Image();
+      img.onload = () => {
+        mark.innerHTML = '';
+        const el = document.createElement('img');
+        el.src = src;
+        el.alt = CONFIG.name || 'Logo';
+        el.className = 'brand-logo-img';
+        mark.appendChild(el);
+      };
+      img.onerror = () => tryNext(i + 1);
+      img.src = src;
+    }
+    tryNext(0);
+  }
+
   function syncTopbarHeight() {
     const topbar = document.querySelector('.topbar');
     if (!topbar) return;
@@ -552,6 +579,8 @@
     const brandTag = document.querySelector('.brand-tagline');
     if (brandName) brandName.textContent = CONFIG.name;
     if (brandTag) brandTag.textContent = CONFIG.tagline;
+
+    renderLogo();
 
     // Measure topbar height so the sticky categories bar attaches just below it
     syncTopbarHeight();

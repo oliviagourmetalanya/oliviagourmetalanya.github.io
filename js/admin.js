@@ -1010,6 +1010,133 @@
       sel.dataset.bound = '1';
     }
     renderSocialList();
+    renderLogoZone();
+  }
+
+  function renderLogoZone() {
+    const zone = document.getElementById('logoZone');
+    if (!zone) return;
+    zone.className = 'image-zone';
+
+    function paint() {
+      zone.innerHTML = '';
+      const logo = STATE.config.logo;
+      if (logo) {
+        const sizeKB = logo.startsWith('data:')
+          ? Math.round((logo.length * 0.75) / 1024)
+          : null;
+        const preview = document.createElement('div');
+        preview.className = 'image-zone-preview';
+        const img = document.createElement('img');
+        img.src = logo;
+        img.style.background = 'rgba(255,255,255,0.04)';
+        preview.appendChild(img);
+        const info = document.createElement('div');
+        info.className = 'image-zone-info';
+        info.innerHTML = `
+          <div class="image-zone-info-row">
+            <span>Logo yüklendi</span>
+            <span style="font-variant-numeric: tabular-nums;">${sizeKB ? '~' + sizeKB + ' KB' : ''}</span>
+          </div>
+          <div class="image-actions">
+            <button type="button" class="btn btn-ghost btn-sm" data-act="replace">Değiştir</button>
+            <button type="button" class="btn btn-danger btn-sm" data-act="remove">Kaldır</button>
+          </div>`;
+        preview.appendChild(info);
+        zone.appendChild(preview);
+        info.querySelector('[data-act="replace"]').addEventListener('click', (e) => { e.stopPropagation(); pickFile(); });
+        info.querySelector('[data-act="remove"]').addEventListener('click', (e) => {
+          e.stopPropagation();
+          STATE.config.logo = '';
+          saveDraft();
+          paint();
+        });
+      } else {
+        zone.innerHTML = `
+          <div class="image-zone-empty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg>
+            <strong>Logo yükle</strong>
+            <span>Sürükle bırak veya tıklayarak seç · PNG (şeffaf arkaplan) önerilir · otomatik küçültülür</span>
+          </div>`;
+      }
+    }
+
+    function pickFile() {
+      const inp = document.createElement('input');
+      inp.type = 'file';
+      inp.accept = 'image/*';
+      inp.addEventListener('change', () => {
+        const f = inp.files[0];
+        if (f) handleFile(f);
+      });
+      inp.click();
+    }
+
+    function handleFile(file) {
+      if (!file.type.startsWith('image/')) {
+        toast('Lütfen bir görsel dosyası seçin', true);
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const original = e.target.result;
+        // SVG: keep as-is (small, scalable)
+        if (file.type === 'image/svg+xml') {
+          STATE.config.logo = original;
+          saveDraft();
+          paint();
+          return;
+        }
+        // PNG/JPG: resize to max 600px, preserve transparency for PNG
+        const useTransparent = (file.type === 'image/png');
+        resizeLogoImage(original, 600, useTransparent, (resized) => {
+          STATE.config.logo = resized;
+          saveDraft();
+          paint();
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+
+    zone.addEventListener('click', () => { if (!STATE.config.logo) pickFile(); });
+    zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('drag-over'); });
+    zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+    zone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      zone.classList.remove('drag-over');
+      const f = e.dataTransfer.files[0];
+      if (f) handleFile(f);
+    });
+
+    paint();
+  }
+
+  function resizeLogoImage(dataUrl, maxDim, transparent, cb) {
+    const img = new Image();
+    img.onload = () => {
+      let { width, height } = img;
+      if (width > maxDim || height > maxDim) {
+        const ratio = Math.min(maxDim / width, maxDim / height);
+        width = Math.round(width * ratio);
+        height = Math.round(height * ratio);
+      }
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, width, height);
+      try {
+        // PNG to keep transparency, JPEG otherwise (smaller)
+        const out = transparent
+          ? canvas.toDataURL('image/png')
+          : canvas.toDataURL('image/jpeg', 0.9);
+        cb(out);
+      } catch (e) {
+        cb(dataUrl);
+      }
+    };
+    img.onerror = () => cb(dataUrl);
+    img.src = dataUrl;
   }
 
   function applySettings() {
