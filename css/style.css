@@ -201,7 +201,7 @@ main { min-height: calc(100vh - 64px); }
 
 .view.active {
   display: block;
-  animation: viewFade 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation: viewFade 0.25s ease-out;
 }
 
 /* Show the right view immediately based on URL hash, BEFORE app.js runs.
@@ -214,8 +214,8 @@ html[data-view="wines"] #winesView {
 }
 
 @keyframes viewFade {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* ============================================
@@ -310,7 +310,22 @@ html[data-view="wines"] #winesView {
 
 .menu-btn:hover { border-color: var(--accent-dark); }
 .menu-btn:hover::before { opacity: 1; }
-.menu-btn:active { transform: scale(0.98); }
+.menu-btn:active {
+  transform: scale(0.96);
+  border-color: var(--accent);
+  background: linear-gradient(135deg, var(--surface-2) 0%, var(--bg-elev) 100%);
+  box-shadow: 0 0 0 4px rgba(201, 169, 110, 0.12);
+  transition: transform 0.08s ease-out, border-color 0.1s, background 0.1s, box-shadow 0.1s;
+}
+.menu-btn:active .btn-arrow {
+  transform: translateX(8px) scale(1.08);
+  color: var(--accent-hi);
+}
+.menu-btn:active .btn-icon-wrap {
+  transform: scale(1.05);
+  border-color: var(--accent);
+}
+.btn-icon-wrap { transition: transform 0.15s, border-color 0.15s; }
 
 .btn-icon-wrap {
   width: 52px;
