@@ -45,9 +45,14 @@ html, body {
 
 body {
   background:
-    radial-gradient(ellipse 80% 50% at top, rgba(201, 169, 110, 0.07), transparent 60%),
-    radial-gradient(ellipse 60% 40% at bottom, rgba(107, 122, 58, 0.05), transparent 60%),
-    var(--bg);
+    /* Subtle gold glow at top (gourmet warmth) */
+    radial-gradient(ellipse 90% 45% at 50% 0%, rgba(201, 169, 110, 0.10), transparent 60%),
+    /* Soft olive green wash at upper left */
+    radial-gradient(ellipse 65% 50% at 15% 25%, rgba(75, 110, 70, 0.12), transparent 60%),
+    /* Stronger forest green glow bottom right */
+    radial-gradient(ellipse 80% 60% at 80% 85%, rgba(107, 122, 58, 0.20), transparent 65%),
+    /* Base diagonal: very dark green → near-black → slightly greener */
+    linear-gradient(160deg, #0e1812 0%, #07100b 55%, #112318 100%);
   background-attachment: fixed;
   /* Topbar handles its own safe-area inset via padding-top.
      Adding it here too would double the offset on notched phones. */
