@@ -1,5 +1,5 @@
 /* ============================================
-   MENÜ — Yönetim Paneli'nden 08.05.2026 20:55:39 tarihinde dışa aktarıldı
+   MENÜ — Yönetim Paneli'nden 08.05.2026 21:45:21 tarihinde dışa aktarıldı
    ============================================ */
 
 window.MENU = {
