@@ -338,25 +338,18 @@
     const card = document.createElement('article');
     card.className = 'item' + (kind === 'wines' ? ' item-wine' : '');
 
-    // Image or placeholder
+    // Always start with a lightweight placeholder (emoji or icon).
+    // If the item has an image, load it lazily as user scrolls — so initial
+    // page render is fast even with many embedded base64 images.
+    const ph = document.createElement('div');
+    ph.className = 'item-image-placeholder';
+    ph.textContent = item.icon || (kind === 'wines' ? '🍷' : '🍽️');
+    card.appendChild(ph);
+
     if (item.image) {
-      const img = document.createElement('img');
-      img.className = 'item-image';
-      img.loading = 'lazy';
-      img.alt = item.name || '';
-      img.src = item.image;
-      img.onerror = () => {
-        const ph = document.createElement('div');
-        ph.className = 'item-image-placeholder';
-        ph.textContent = item.icon || (kind === 'wines' ? '🍷' : '🍽️');
-        img.replaceWith(ph);
-      };
-      card.appendChild(img);
-    } else {
-      const ph = document.createElement('div');
-      ph.className = 'item-image-placeholder';
-      ph.textContent = item.icon || (kind === 'wines' ? '🍷' : '🍽️');
-      card.appendChild(ph);
+      ph.dataset.lazySrc = item.image;
+      ph.dataset.lazyAlt = item.name || '';
+      enqueueLazyImage(ph);
     }
 
     // Body
@@ -510,6 +503,47 @@
   // ============================================
   // Init
   // ============================================
+  // ============================================
+  // Lazy image loading (only fetch/decode when scrolled near viewport)
+  // Items have a placeholder (emoji) until their card scrolls into view.
+  // ============================================
+  const LAZY_OBSERVER = ('IntersectionObserver' in window) ? new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        loadLazyImage(e.target);
+        LAZY_OBSERVER.unobserve(e.target);
+      }
+    });
+  }, { rootMargin: '300px 0px' }) : null;
+
+  function enqueueLazyImage(placeholder) {
+    if (!LAZY_OBSERVER) {
+      // Older browsers: load immediately
+      loadLazyImage(placeholder);
+      return;
+    }
+    LAZY_OBSERVER.observe(placeholder);
+  }
+
+  function loadLazyImage(placeholder) {
+    const src = placeholder.dataset.lazySrc;
+    if (!src) return;
+    const test = new Image();
+    test.onload = () => {
+      const realImg = document.createElement('img');
+      realImg.src = src;
+      realImg.alt = placeholder.dataset.lazyAlt || '';
+      realImg.className = 'item-image';
+      realImg.loading = 'lazy';
+      realImg.decoding = 'async';
+      placeholder.replaceWith(realImg);
+    };
+    test.onerror = () => {
+      // Keep the emoji placeholder
+    };
+    test.src = src;
+  }
+
   // Render brand logo: prefer CONFIG.logo (data URL or path), then images/logo.png,
   // and finally fall back to the inline SVG already in the markup.
   function renderLogo() {
