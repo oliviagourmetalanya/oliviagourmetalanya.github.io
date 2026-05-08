@@ -249,6 +249,7 @@
       if (active && catEl.scrollWidth > catEl.clientWidth) {
         active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
       }
+      setupCustomScrollbar(catEl);
     });
 
     // Items
@@ -503,6 +504,51 @@
   // ============================================
   // Init
   // ============================================
+  // ============================================
+  // Custom scrollbar for the categories pill — inset from rounded corners
+  // ============================================
+  function setupCustomScrollbar(catEl) {
+    const wrap = catEl.parentElement;
+    if (!wrap || !wrap.classList.contains('categories-wrap')) return;
+
+    let track = wrap.querySelector('.cat-scroll-track');
+    let thumb;
+    if (!track) {
+      track = document.createElement('div');
+      track.className = 'cat-scroll-track';
+      thumb = document.createElement('div');
+      thumb.className = 'cat-scroll-thumb';
+      track.appendChild(thumb);
+      wrap.appendChild(track);
+    } else {
+      thumb = track.querySelector('.cat-scroll-thumb');
+    }
+
+    function update() {
+      const sw = catEl.scrollWidth;
+      const cw = catEl.clientWidth;
+      if (sw <= cw + 1) {
+        track.classList.add('hidden');
+        return;
+      }
+      track.classList.remove('hidden');
+      const trackWidth = track.offsetWidth;
+      const thumbWidth = Math.max(28, Math.round((cw / sw) * trackWidth));
+      const maxThumbX = trackWidth - thumbWidth;
+      const ratio = catEl.scrollLeft / (sw - cw);
+      const thumbX = Math.max(0, Math.min(maxThumbX, ratio * maxThumbX));
+      thumb.style.width = thumbWidth + 'px';
+      thumb.style.transform = `translateX(${thumbX}px)`;
+    }
+
+    if (!catEl.dataset.scrollListener) {
+      catEl.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      catEl.dataset.scrollListener = '1';
+    }
+    update();
+  }
+
   // ============================================
   // Lazy image loading (only fetch/decode when scrolled near viewport)
   // Items have a placeholder (emoji) until their card scrolls into view.

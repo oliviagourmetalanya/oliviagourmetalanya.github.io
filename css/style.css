@@ -491,9 +491,9 @@ main { min-height: calc(100vh - 64px); }
   margin-left: 12px;
 }
 
-/* Wrapper holds the pill styling. Horizontal padding physically insets
-   the inner scrollable element (.categories) so its native scrollbar never
-   reaches the wrapper's rounded corners. */
+/* Wrapper holds the pill styling. Native scrollbar is hidden and replaced
+   with a custom track/thumb (positioned absolute inside the wrapper) so
+   the bar can be physically shorter than the scrollable area. */
 .categories-wrap {
   position: sticky;
   top: calc(var(--topbar-height, 64px) + 10px);
@@ -506,7 +506,6 @@ main { min-height: calc(100vh - 64px); }
   border-radius: 28px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
   overflow: hidden;
-  padding: 0 30px; /* this is the scrollbar inset on both sides */
 }
 
 .categories {
@@ -514,27 +513,38 @@ main { min-height: calc(100vh - 64px); }
   align-items: center;
   gap: 8px;
   overflow-x: auto;
-  padding: 12px 0 8px; /* horizontal handled by wrapper padding */
-  scroll-padding-inline: 4px;
+  padding: 12px 22px 16px; /* extra bottom space for custom scrollbar */
   scroll-snap-type: x proximity;
-  /* Thin gold scrollbar (no end-arrow buttons). */
-  scrollbar-width: thin;
-  scrollbar-color: var(--accent-dark) transparent;
+  /* Hide native scrollbar — replaced by .cat-scroll-track below */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
-.categories::-webkit-scrollbar { height: 4px; }
-.categories::-webkit-scrollbar-track { background: transparent; }
-.categories::-webkit-scrollbar-thumb {
+.categories::-webkit-scrollbar { display: none; }
+
+/* Custom horizontal scrollbar — inset from rounded corners */
+.cat-scroll-track {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 6px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 1;
+}
+.cat-scroll-thumb {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 30%;
   background: var(--accent-dark);
   border-radius: 2px;
+  transform: translateX(0);
+  transition: transform 0.06s linear;
 }
-.categories::-webkit-scrollbar-thumb:hover { background: var(--accent); }
-.categories::-webkit-scrollbar-button { display: none; }
-/* Mobile (touch only): hide scrollbar entirely, swipe is the gesture */
-@media (hover: none) and (pointer: coarse) {
-  .categories { scrollbar-width: none; }
-  .categories::-webkit-scrollbar { display: none; }
-}
-/* Wrapper padding handles edge spacing now — no pseudo-spacers needed. */
+.cat-scroll-track.hidden { display: none; }
 
 .category-btn {
   flex-shrink: 0;
