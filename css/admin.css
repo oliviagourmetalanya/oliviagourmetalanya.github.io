@@ -419,6 +419,22 @@ a { color: inherit; }
   gap: 4px;
 }
 
+.admin-section-divider {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--bg-elev);
+  padding: 8px 14px;
+  border-radius: 6px;
+  margin: 12px 4px 4px;
+  border: 1px solid var(--border);
+  text-align: center;
+}
+.admin-section-divider:first-child { margin-top: 0; }
+
 .btn-add-item {
   margin: 4px 4px 8px;
   padding: 8px 12px;

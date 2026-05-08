@@ -225,7 +225,18 @@
         empty.textContent = 'Bu kategoride henüz ürün yok.';
         itemsWrap.appendChild(empty);
       } else {
+        let lastSection = null;
         cat.items.forEach((item, ii) => {
+          const sectionLabel = item.section ? getName(item.section) : null;
+          if (sectionLabel && sectionLabel !== lastSection) {
+            const divider = document.createElement('div');
+            divider.className = 'admin-section-divider';
+            divider.textContent = sectionLabel;
+            itemsWrap.appendChild(divider);
+            lastSection = sectionLabel;
+          } else if (!sectionLabel) {
+            lastSection = null;
+          }
           const row = renderItemRow(kind, ci, ii, item);
           itemsWrap.appendChild(row);
         });
