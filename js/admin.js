@@ -1153,7 +1153,11 @@
         const out = transparent
           ? canvas.toDataURL('image/png')
           : canvas.toDataURL('image/jpeg', 0.9);
-        cb(out);
+        // Belt-and-suspenders: if the canvas re-encoded version is actually
+        // LARGER than the original (canvas's PNG encoder is unoptimized),
+        // keep the original bytes. The image will display fine — modern
+        // browsers downscale on render.
+        cb(out.length > dataUrl.length ? dataUrl : out);
       } catch (e) {
         cb(dataUrl);
       }
