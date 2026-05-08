@@ -513,13 +513,21 @@ main { min-height: calc(100vh - 64px); }
   align-items: center;
   gap: 8px;
   overflow-x: auto;
-  padding: 12px 22px 16px; /* extra bottom space for custom scrollbar */
+  padding: 12px 32px 16px; /* horizontal breathing room + extra bottom for custom scrollbar */
+  scroll-padding-inline: 32px;
   scroll-snap-type: x proximity;
   /* Hide native scrollbar — replaced by .cat-scroll-track below */
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 .categories::-webkit-scrollbar { display: none; }
+/* Belt-and-suspenders: explicit flex spacers so the first/last button
+   never sit flush against the scroll viewport edge. */
+.categories::before,
+.categories::after {
+  content: '';
+  flex: 0 0 4px;
+}
 
 /* Custom horizontal scrollbar — inset from rounded corners */
 .cat-scroll-track {
