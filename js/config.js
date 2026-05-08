@@ -1,38 +1,38 @@
 /* ============================================
-   Restoran ayarları — buradan kolayca düzenleyin
+   AYARLAR — Yönetim Paneli'nden 08.05.2026 16:36:37 tarihinde dışa aktarıldı
    ============================================ */
 
 window.CONFIG = {
-  // Restoran adı (alt başlık olarak da kullanılır)
-  name: "Olivia",
-  tagline: "Gourmet Restaurant",
-
-  // Wi-Fi bilgisi (boş bırakırsanız Wi-Fi kartı gizlenir)
-  wifi: {
-    ssid: "Olivia_Guest",
-    password: "olivia2025"
+  "name": "Olivia",
+  "tagline": "Gourmet Restaurant",
+  "wifi": {
+    "ssid": "Olivia_Gourmet_Restaurant",
+    "password": "Olivia2023"
   },
-
-  // Para birimi sembolü (sadece TL)
-  currency: "₺",
-  // Sembol fiyatın önünde mi (true) arkasında mı (false) gözüksün
-  currencyBefore: false,
-
-  // Sosyal medya — kullanılmayanları silebilir veya yeni satır ekleyebilirsiniz
-  // Desteklenen tipler: instagram, facebook, twitter, tiktok, youtube,
-  //                     tripadvisor, googlemaps, whatsapp, phone, email, website
-  social: [
-    { type: "instagram",   url: "https://instagram.com/oliviagourmet" },
-    { type: "facebook",    url: "https://facebook.com/oliviagourmet" },
-    { type: "tripadvisor", url: "https://www.tripadvisor.com/" },
-    { type: "googlemaps",  url: "https://maps.google.com/" },
-    { type: "whatsapp",    url: "https://wa.me/905551234567" },
-    { type: "phone",       url: "tel:+905551234567" }
+  "currency": "₺",
+  "currencyBefore": false,
+  "social": [
+    {
+      "type": "instagram",
+      "url": "https://www.instagram.com/oliviagourmetrestaurant/"
+    },
+    {
+      "type": "facebook",
+      "url": "https://www.facebook.com/oliviagourmetalanya/?locale=tr_TR"
+    },
+    {
+      "type": "tripadvisor",
+      "url": "https://www.tripadvisor.com.tr/Restaurant_Review-g297961-d6602998-Reviews-Alanya_Olivia_Gourmet_Restaurant_Cafe_Bar-Alanya_Turkish_Mediterranean_Coast.html"
+    },
+    {
+      "type": "googlemaps",
+      "url": "https://maps.app.goo.gl/PewMA3wBoSZ51tFz9"
+    },
+    {
+      "type": "phone",
+      "url": "tel:+902425190907"
+    }
   ],
-
-  // Varsayılan dil — kullanıcı cihaz dili desteklenmiyorsa bu dile düşer
-  defaultLang: "en",
-
-  // Yazıldığında menüdeki orijinal dil
-  sourceLang: "tr"
+  "defaultLang": "en",
+  "sourceLang": "tr"
 };
