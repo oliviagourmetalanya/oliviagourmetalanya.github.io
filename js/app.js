@@ -250,6 +250,7 @@
         active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
       }
       setupCustomScrollbar(catEl);
+      syncCategoriesBarHeight();
     });
 
     // Items
@@ -625,6 +626,34 @@
     document.documentElement.style.setProperty('--topbar-height', h + 'px');
   }
 
+  // Measure the (visible) categories bar so the sticky category-title in
+  // 'All' view can sit just below it without overlapping.
+  function syncCategoriesBarHeight() {
+    const wrap = document.querySelector('.view.active .categories-wrap');
+    if (!wrap) {
+      document.documentElement.style.setProperty('--categories-bar-height', '0px');
+      return;
+    }
+    document.documentElement.style.setProperty('--categories-bar-height', wrap.offsetHeight + 'px');
+  }
+
+  // Scroll-to-top button: visible after scrolling down a bit
+  function setupScrollTopBtn() {
+    const btn = document.getElementById('scrollTopBtn');
+    if (!btn || btn.dataset.bound) return;
+    btn.dataset.bound = '1';
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    let last = 0;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (y > 400 && last <= 400) btn.classList.add('visible');
+      else if (y <= 400 && last > 400) btn.classList.remove('visible');
+      last = y;
+    }, { passive: true });
+  }
+
   function buildLangDropdown() {
     const dd = document.getElementById('langDropdown');
     LANGUAGES.forEach(lang => {
@@ -676,7 +705,9 @@
     // Measure topbar height so the sticky categories bar attaches just below it
     syncTopbarHeight();
     window.addEventListener('resize', syncTopbarHeight);
+    window.addEventListener('resize', syncCategoriesBarHeight);
 
+    setupScrollTopBtn();
     buildLangDropdown();
 
     // Detect & apply language
