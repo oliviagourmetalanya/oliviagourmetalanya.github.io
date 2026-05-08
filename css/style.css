@@ -491,8 +491,9 @@ main { min-height: calc(100vh - 64px); }
   margin-left: 12px;
 }
 
-/* Wrapper holds the pill styling. overflow:hidden + border-radius clips
-   the inner scrollbar's edges so they never extend past the rounded corners. */
+/* Wrapper holds the pill styling. Horizontal padding physically insets
+   the inner scrollable element (.categories) so its native scrollbar never
+   reaches the wrapper's rounded corners. */
 .categories-wrap {
   position: sticky;
   top: calc(var(--topbar-height, 64px) + 10px);
@@ -505,6 +506,7 @@ main { min-height: calc(100vh - 64px); }
   border-radius: 28px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
   overflow: hidden;
+  padding: 0 30px; /* this is the scrollbar inset on both sides */
 }
 
 .categories {
@@ -512,11 +514,10 @@ main { min-height: calc(100vh - 64px); }
   align-items: center;
   gap: 8px;
   overflow-x: auto;
-  padding: 12px 26px 8px;
-  scroll-padding-inline: 26px;
+  padding: 12px 0 8px; /* horizontal handled by wrapper padding */
+  scroll-padding-inline: 4px;
   scroll-snap-type: x proximity;
-  /* Thin gold scrollbar (no end-arrow buttons). The wrapper's border-radius
-     + overflow:hidden clips the scrollbar's left/right ends. */
+  /* Thin gold scrollbar (no end-arrow buttons). */
   scrollbar-width: thin;
   scrollbar-color: var(--accent-dark) transparent;
 }
@@ -533,13 +534,7 @@ main { min-height: calc(100vh - 64px); }
   .categories { scrollbar-width: none; }
   .categories::-webkit-scrollbar { display: none; }
 }
-/* Spacer pseudos so the first/last category have breathing room from the
-   pill edges (flex doesn't always honour padding-right inside scroll containers). */
-.categories::before,
-.categories::after {
-  content: '';
-  flex: 0 0 4px;
-}
+/* Wrapper padding handles edge spacing now — no pseudo-spacers needed. */
 
 .category-btn {
   flex-shrink: 0;
