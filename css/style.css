@@ -313,9 +313,20 @@ html[data-view="wines"] #winesView {
 .menu-btn:active {
   transform: scale(0.96);
   border-color: var(--accent);
-  background: linear-gradient(135deg, var(--surface-2) 0%, var(--bg-elev) 100%);
   box-shadow: 0 0 0 4px rgba(201, 169, 110, 0.12);
-  transition: transform 0.08s ease-out, border-color 0.1s, background 0.1s, box-shadow 0.1s;
+  filter: brightness(0.85);
+  transition: transform 0.08s ease-out, border-color 0.1s, filter 0.1s, box-shadow 0.1s;
+}
+
+/* Distinct dark-tone gradients for each home-page panel — pick one */
+.menu-btn[data-view="food"] {
+  background: linear-gradient(135deg, #3a1820 0%, #1a0c12 100%);
+}
+.menu-btn[data-view="drinks"] {
+  background: linear-gradient(135deg, #142136 0%, #0a1020 100%);
+}
+.menu-btn[data-view="wines"] {
+  background: linear-gradient(135deg, #2a1530 0%, #14091c 100%);
 }
 .menu-btn:active .btn-arrow {
   transform: translateX(8px) scale(1.08);
@@ -377,7 +388,7 @@ html[data-view="wines"] #winesView {
 
 /* Info / Wi-Fi card */
 .info-card {
-  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 60%, var(--bg-elev) 100%);
+  background: linear-gradient(135deg, #0e2a30 0%, #081820 100%);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 18px 20px;
