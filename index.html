@@ -7,6 +7,15 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Olivia Gourmet Restaurant</title>
+  <!-- Set the initial view from the URL hash BEFORE the page renders, so
+       refreshing on a sub-menu doesn't flash the home page first. -->
+  <script>
+    (function() {
+      var hash = (location.hash || '').replace(/^#\/?/, '');
+      var view = (hash === 'food' || hash === 'drinks' || hash === 'wines') ? hash : 'home';
+      document.documentElement.setAttribute('data-view', view);
+    })();
+  </script>
   <script>document.write('<link rel="stylesheet" href="css/style.css?t=' + Date.now() + '">');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,7 +37,7 @@
   </header>
 
   <main>
-    <section class="view view-home active" id="homeView">
+    <section class="view view-home" id="homeView">
       <div class="brand">
         <div class="brand-mark">
           <svg viewBox="0 0 64 64" fill="none">

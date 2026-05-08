@@ -204,6 +204,15 @@ main { min-height: calc(100vh - 64px); }
   animation: viewFade 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
+/* Show the right view immediately based on URL hash, BEFORE app.js runs.
+   This prevents a flash of the home view when refreshing on a sub-menu. */
+html[data-view="home"] #homeView,
+html[data-view="food"] #foodView,
+html[data-view="drinks"] #drinksView,
+html[data-view="wines"] #winesView {
+  display: block;
+}
+
 @keyframes viewFade {
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }

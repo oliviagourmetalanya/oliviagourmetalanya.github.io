@@ -448,6 +448,7 @@
   // ============================================
   function showView(view) {
     STATE.view = view;
+    document.documentElement.setAttribute('data-view', view);
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     const target = document.getElementById(view + 'View');
     if (target) target.classList.add('active');
