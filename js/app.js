@@ -710,17 +710,11 @@
     const brandName = document.querySelector('.brand-name');
     const brandTag = document.querySelector('.brand-tagline');
     if (brandName) brandName.textContent = CONFIG.name;
-    // Home tagline below the logo:
-    //   OLIVIA GOURMET RESTAURANT
-    //              Menu  ← italic serif
-    if (brandTag) {
-      brandTag.textContent = '';
-      brandTag.appendChild(document.createTextNode(`${CONFIG.name} ${CONFIG.tagline}`));
-      const sub = document.createElement('span');
-      sub.className = 'brand-menu-suffix';
-      sub.textContent = 'Menu';
-      brandTag.appendChild(sub);
-    }
+    // Update the tagline text without changing structure (the markup
+    // already has both <span>s so the layout stays stable from initial
+    // paint — no shift when JS runs).
+    const tagMain = document.querySelector('.brand-tagline-main');
+    if (tagMain) tagMain.textContent = `${CONFIG.name} ${CONFIG.tagline}`;
 
     renderLogo();
 
