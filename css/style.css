@@ -231,9 +231,10 @@ html[data-view="wines"] #winesView {
 }
 
 .brand-mark {
+  width: 100%;
   max-width: 280px;
-  max-height: 170px;
-  min-height: 130px;  /* reserve space so tagline doesn't jump when logo loads */
+  /* Fixed height so the layout below never shifts when the logo loads. */
+  height: 170px;
   margin: 0 auto 10px;
   display: flex;
   align-items: center;
