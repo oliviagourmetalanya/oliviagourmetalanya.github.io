@@ -659,6 +659,34 @@
     document.documentElement.style.setProperty('--categories-bar-height', wrap.offsetHeight + 'px');
   }
 
+  // Manage stacked sticky category titles in 'All' view: when the next
+  // title is visible in normal flow (e.g. at max scroll where the previous
+  // section is still partly on-screen), hide the previous sticky title so
+  // only one is shown at a time.
+  function syncStickyTitles() {
+    const titles = document.querySelectorAll('.view.active .category-title');
+    if (titles.length < 2) return;
+    const stickyTop = parseFloat(getComputedStyle(titles[0]).top) || 0;
+    const vh = window.innerHeight;
+    for (let i = 0; i < titles.length; i++) {
+      const t = titles[i];
+      const next = titles[i + 1];
+      const rect = t.getBoundingClientRect();
+      const isSticking = rect.top <= stickyTop + 2;
+      let shouldHide = false;
+      if (isSticking && next) {
+        const nextRect = next.getBoundingClientRect();
+        if (nextRect.top > stickyTop + 2 && nextRect.top < vh) {
+          shouldHide = true;
+        }
+      }
+      t.style.visibility = shouldHide ? 'hidden' : '';
+    }
+  }
+  // Run on scroll + resize for reliable behavior
+  window.addEventListener('scroll', syncStickyTitles, { passive: true });
+  window.addEventListener('resize', syncStickyTitles);
+
   // Scroll-to-top button: visible after scrolling down a bit
   function setupScrollTopBtn() {
     const btn = document.getElementById('scrollTopBtn');
