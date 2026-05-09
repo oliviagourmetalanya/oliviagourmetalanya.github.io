@@ -268,12 +268,19 @@ html[data-view="wines"] #winesView {
 
 .brand-tagline {
   font-size: 11px;
-  color: var(--text-muted);
   letter-spacing: 4px;
   text-transform: uppercase;
   margin-top: 0;
   font-weight: 500;
   line-height: 1.4;
+  /* Tagline as a whole keeps small/spaced look; the spans below pick colors */
+  color: var(--text-muted);
+}
+
+.brand-tagline-main {
+  color: var(--accent-dark);
+  font-weight: 600;
+  letter-spacing: 4px;
 }
 
 .brand-menu-suffix {
@@ -287,6 +294,10 @@ html[data-view="wines"] #winesView {
   color: var(--accent);
   font-weight: 500;
   line-height: 1;
+  background: linear-gradient(180deg, var(--accent-hi) 0%, var(--accent) 60%, var(--accent-dark) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .menu-buttons {
