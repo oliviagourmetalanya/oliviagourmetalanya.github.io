@@ -264,7 +264,10 @@
     <button id="btnSingle">Tek (büyük)</button>
     <button id="btn4up">4'lü (masa için)</button>
     <button id="btnPrint">🖨 Yazdır</button>
-    <button id="btnDownload">⬇ SVG indir</button>
+    <button id="btnDownloadSvg" title="Vektör — sonsuz çözünürlük, matbaa için ideal">⬇ SVG</button>
+    <button id="btnDownloadPng1k" title="1000×1000 px — küçük/orta baskılar">⬇ PNG 1000</button>
+    <button id="btnDownloadPng2k" title="2000×2000 px — poster / büyük baskı">⬇ PNG 2000</button>
+    <button id="btnDownloadPng4k" title="4000×4000 px — devasa boyutlar / billboard">⬇ PNG 4000</button>
     <div class="help">
       Bu sayfa <code>index.html</code>'in bulunduğu adresi otomatik algılar. Farklı bir URL için yukarıdaki kutuya yazıp <strong>Oluştur</strong>'a basın.
       Yazdırırken tarayıcı baskı diyaloğunda <strong>"Background graphics"</strong> seçeneğini açın.
@@ -381,17 +384,57 @@
     });
     document.getElementById('btnPrint').addEventListener('click', () => window.print());
 
-    document.getElementById('btnDownload').addEventListener('click', () => {
-      const url = (urlInput.value || '').trim();
-      if (!url) return;
-      const svg = buildQrSvg(url);
-      const blob = new Blob([svg], { type: 'image/svg+xml' });
+    function downloadFile(blob, filename) {
+      const blobUrl = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'olivia-menu-qr.svg';
+      a.href = blobUrl;
+      a.download = filename;
+      document.body.appendChild(a);
       a.click();
-      setTimeout(() => URL.revokeObjectURL(a.href), 500);
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 500);
+    }
+
+    function getSvgBlob() {
+      const url = (urlInput.value || '').trim();
+      if (!url) return null;
+      const svg = buildQrSvg(url);
+      return new Blob([svg], { type: 'image/svg+xml' });
+    }
+
+    document.getElementById('btnDownloadSvg').addEventListener('click', () => {
+      const blob = getSvgBlob();
+      if (blob) downloadFile(blob, 'olivia-menu-qr.svg');
     });
+
+    function downloadPng(size) {
+      const svgBlob = getSvgBlob();
+      if (!svgBlob) return;
+      const svgUrl = URL.createObjectURL(svgBlob);
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d');
+        // Solid white background — important for QR printing
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, size, size);
+        // Crisp edges (no smoothing for binary QR)
+        ctx.imageSmoothingEnabled = false;
+        ctx.drawImage(img, 0, 0, size, size);
+        canvas.toBlob((pngBlob) => {
+          if (pngBlob) downloadFile(pngBlob, `olivia-menu-qr-${size}px.png`);
+          URL.revokeObjectURL(svgUrl);
+        }, 'image/png');
+      };
+      img.onerror = () => URL.revokeObjectURL(svgUrl);
+      img.src = svgUrl;
+    }
+
+    document.getElementById('btnDownloadPng1k').addEventListener('click', () => downloadPng(1000));
+    document.getElementById('btnDownloadPng2k').addEventListener('click', () => downloadPng(2000));
+    document.getElementById('btnDownloadPng4k').addEventListener('click', () => downloadPng(4000));
 
     // Init
     urlInput.value = defaultUrl();
