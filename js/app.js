@@ -659,15 +659,20 @@
     document.documentElement.style.setProperty('--categories-bar-height', wrap.offsetHeight + 'px');
   }
 
-  // Manage stacked sticky category titles in 'All' view: when the next
-  // title is visible in normal flow (e.g. at max scroll where the previous
-  // section is still partly on-screen), hide the previous sticky title so
-  // only one is shown at a time.
+  // Manage stacked sticky category titles in 'All' view.
+  // Edge case: at max scroll, the previous section is still partly on-screen
+  // so its title sticks at the top, while the next title sits below it in
+  // normal flow (because there's no more scroll room to push it up to the
+  // sticky position). Result: two titles visible.
+  // Fix: hide the previous sticky title ONLY when the next title is visible
+  // AND there isn't enough remaining scroll for it to reach the sticky pos.
   function syncStickyTitles() {
     const titles = document.querySelectorAll('.view.active .category-title');
     if (titles.length < 2) return;
     const stickyTop = parseFloat(getComputedStyle(titles[0]).top) || 0;
     const vh = window.innerHeight;
+    const docEl = document.documentElement;
+    const remainingScroll = (docEl.scrollHeight - vh) - (window.scrollY || docEl.scrollTop || 0);
     for (let i = 0; i < titles.length; i++) {
       const t = titles[i];
       const next = titles[i + 1];
@@ -676,7 +681,11 @@
       let shouldHide = false;
       if (isSticking && next) {
         const nextRect = next.getBoundingClientRect();
-        if (nextRect.top > stickyTop + 2 && nextRect.top < vh) {
+        const needsScroll = nextRect.top - stickyTop;
+        // Hide previous sticky title only when:
+        // 1) next title is visible in viewport, and
+        // 2) it cannot reach the sticky position even if we scroll all the way down
+        if (nextRect.top > stickyTop + 2 && nextRect.top < vh && needsScroll > remainingScroll + 4) {
           shouldHide = true;
         }
       }
