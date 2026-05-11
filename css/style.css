@@ -583,21 +583,25 @@ html[data-view="wines"] #winesView {
   margin-left: 12px;
 }
 
-/* Wrapper is the sticky shield. The pill itself sits inside .categories.
-   The wrap adds an opaque "skirt" below the pill (padding-bottom in body-bg
-   color) so there's a visible gap between pill and the next sticky title,
-   while items scrolling up still cannot peek through (skirt is part of the
-   sticky element's painted area). */
+/* Wrapper is the sticky 2D mask. The pill (.categories) sits inside as
+   pure decoration. The wrap replicates body's background WITH the same
+   `background-attachment: fixed` — so its bg perfectly blends with body
+   at every viewport y (invisible). It's still fully opaque, so items
+   scrolling up behind it are completely hidden. No visible rectangle
+   around the rounded pill — the wrap looks like body bg. */
 .categories-wrap {
   position: sticky;
   top: var(--topbar-height, 64px);
   z-index: 50;
   margin: 10px 0 18px;
-  padding: 0 0 14px; /* 14px bottom = visible body-color gap below the pill */
-  /* Solid color that matches the body gradient's base at this fixed
-     viewport position (body is background-attachment: fixed, so this
-     stays consistent regardless of scroll). */
-  background: #0e1812;
+  padding: 0 0 14px; /* 14px bottom = breathing room below the pill */
+  /* MUST match body's background + attachment exactly to be invisible */
+  background:
+    radial-gradient(ellipse 90% 45% at 50% 0%, rgba(201, 169, 110, 0.10), transparent 60%),
+    radial-gradient(ellipse 65% 50% at 15% 25%, rgba(75, 110, 70, 0.12), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 80% 85%, rgba(107, 122, 58, 0.20), transparent 65%),
+    linear-gradient(160deg, #0e1812 0%, #07100b 55%, #112318 100%);
+  background-attachment: fixed;
   will-change: transform;
   transform: translateZ(0);
 }
@@ -780,10 +784,32 @@ html[data-view="wines"] #winesView {
    applies to direct children) */
 .category-section .item + .item,
 .category-section .category-note + .item,
-.category-section .category-title + .item {
+.category-section .category-title-frame + .item {
   margin-top: 22px;
 }
 .category-section .category-note { margin-top: 14px; margin-bottom: 0; }
+
+/* Sticky 2D mask frame around each title — same body-bg replication trick
+   as .categories-wrap. Rectangular (covers the title's rounded corners
+   too) so items passing behind the title's curved corners are also
+   masked. Looks invisible against body. */
+.category-title-frame {
+  position: sticky;
+  top: calc(var(--topbar-height, 64px) + var(--categories-bar-height, 72px));
+  z-index: 40;
+  /* No padding — the frame is exactly the title's bounding box. The
+     body-bg replication paints the title's rounded-corner gaps so items
+     can't peek through them. */
+  /* MUST match body's background + attachment exactly to be invisible */
+  background:
+    radial-gradient(ellipse 90% 45% at 50% 0%, rgba(201, 169, 110, 0.10), transparent 60%),
+    radial-gradient(ellipse 65% 50% at 15% 25%, rgba(75, 110, 70, 0.12), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 80% 85%, rgba(107, 122, 58, 0.20), transparent 65%),
+    linear-gradient(160deg, #0e1812 0%, #07100b 55%, #112318 100%);
+  background-attachment: fixed;
+  will-change: transform;
+  transform: translateZ(0);
+}
 
 .category-title {
   font-family: 'Cormorant Garamond', serif;
@@ -795,18 +821,13 @@ html[data-view="wines"] #winesView {
   align-items: center;
   gap: 14px;
   padding: 14px 16px;
-  /* Sticks flush below the categories-wrap (which now includes a 14px
-     body-color skirt — that's the visible gap between pill and title). */
-  position: sticky;
-  top: calc(var(--topbar-height, 64px) + var(--categories-bar-height, 72px));
-  z-index: 40;
+  /* Not sticky — the frame above is sticky. This is just a rounded card
+     sitting inside the mask frame. */
   background: linear-gradient(135deg, #15211b 0%, #0a1410 60%, #18241d 100%);
   border: 1px solid rgba(201, 169, 110, 0.18);
   border-radius: 12px;
   margin: 0;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
-  will-change: transform;
-  transform: translateZ(0);
 }
 
 .category-title::before,
