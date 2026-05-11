@@ -280,17 +280,10 @@
         if (!cat.items || !cat.items.length) return;
         const section = document.createElement('div');
         section.className = 'category-section';
-        // Wrap each sticky title in a body-bg-replicated frame. The frame
-        // is the sticky element (rectangular, invisible against body, opaque
-        // to items passing behind it — Unity-style 2D mask). The rounded
-        // title sits inside it as pure decoration.
-        const frame = document.createElement('div');
-        frame.className = 'category-title-frame';
         const title = document.createElement('h3');
         title.className = 'category-title';
         title.textContent = tr(cat.name, STATE.lang);
-        frame.appendChild(title);
-        section.appendChild(frame);
+        section.appendChild(title);
         if (cat.note) {
           const noteText = tr(cat.note, STATE.lang);
           if (noteText) {
@@ -674,8 +667,7 @@
   // Fix: hide the previous sticky title ONLY when the next title is visible
   // AND there isn't enough remaining scroll for it to reach the sticky pos.
   function syncStickyTitles() {
-    // Frames are the sticky elements (titles sit inside their frames).
-    const titles = document.querySelectorAll('.view.active .category-title-frame');
+    const titles = document.querySelectorAll('.view.active .category-title');
     if (titles.length < 2) return;
     const stickyTop = parseFloat(getComputedStyle(titles[0]).top) || 0;
     const vh = window.innerHeight;

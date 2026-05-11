@@ -583,25 +583,20 @@ html[data-view="wines"] #winesView {
   margin-left: 12px;
 }
 
-/* Wrapper is the sticky 2D mask. The pill (.categories) sits inside as
-   pure decoration. The wrap replicates body's background WITH the same
-   `background-attachment: fixed` — so its bg perfectly blends with body
-   at every viewport y (invisible). It's still fully opaque, so items
-   scrolling up behind it are completely hidden. No visible rectangle
-   around the rounded pill — the wrap looks like body bg. */
+/* Wrapper holds the pill styling. Native scrollbar is hidden and replaced
+   with a custom track/thumb (positioned absolute inside the wrapper) so
+   the bar can be physically shorter than the scrollable area. */
 .categories-wrap {
   position: sticky;
-  top: var(--topbar-height, 64px);
+  top: calc(var(--topbar-height, 64px) + 10px);
   z-index: 50;
   margin: 10px 0 18px;
-  padding: 0 0 14px; /* 14px bottom = breathing room below the pill */
-  /* MUST match body's background + attachment exactly to be invisible */
-  background:
-    radial-gradient(ellipse 90% 45% at 50% 0%, rgba(201, 169, 110, 0.10), transparent 60%),
-    radial-gradient(ellipse 65% 50% at 15% 25%, rgba(75, 110, 70, 0.12), transparent 60%),
-    radial-gradient(ellipse 80% 60% at 80% 85%, rgba(107, 122, 58, 0.20), transparent 65%),
-    linear-gradient(160deg, #0e1812 0%, #07100b 55%, #112318 100%);
-  background-attachment: fixed;
+  /* Fully opaque: items scrolling underneath must NOT show through. */
+  background: linear-gradient(135deg, #0e1812 0%, #08110b 50%, #11211a 100%);
+  border: 1px solid rgba(201, 169, 110, 0.15);
+  border-radius: 28px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
   will-change: transform;
   transform: translateZ(0);
 }
@@ -615,12 +610,6 @@ html[data-view="wines"] #winesView {
   padding: 12px 32px 16px; /* horizontal breathing room + extra bottom for custom scrollbar */
   scroll-padding-inline: 32px;
   scroll-snap-type: x proximity;
-  /* Pill styling lives on the scroll container so rounded corners clip
-     button content cleanly at the edges. */
-  background: linear-gradient(135deg, #0e1812 0%, #08110b 50%, #11211a 100%);
-  border: 1px solid rgba(201, 169, 110, 0.15);
-  border-radius: 28px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
   /* Hide native scrollbar — replaced by .cat-scroll-track below */
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -634,15 +623,12 @@ html[data-view="wines"] #winesView {
   flex: 0 0 4px;
 }
 
-/* Custom horizontal scrollbar — inset from rounded corners.
-   Positioned relative to .categories-wrap. The wrap now has a 14px
-   body-color skirt at the bottom, so we offset 6px + 14px = 20px to
-   stay inside the pill. */
+/* Custom horizontal scrollbar — inset from rounded corners */
 .cat-scroll-track {
   position: absolute;
   left: 28px;
   right: 28px;
-  bottom: 20px;
+  bottom: 6px;
   height: 3px;
   background: rgba(255, 255, 255, 0.07);
   border-radius: 2px;
@@ -784,32 +770,10 @@ html[data-view="wines"] #winesView {
    applies to direct children) */
 .category-section .item + .item,
 .category-section .category-note + .item,
-.category-section .category-title-frame + .item {
+.category-section .category-title + .item {
   margin-top: 22px;
 }
 .category-section .category-note { margin-top: 14px; margin-bottom: 0; }
-
-/* Sticky 2D mask frame around each title — same body-bg replication trick
-   as .categories-wrap. Rectangular (covers the title's rounded corners
-   too) so items passing behind the title's curved corners are also
-   masked. Looks invisible against body. */
-.category-title-frame {
-  position: sticky;
-  top: calc(var(--topbar-height, 64px) + var(--categories-bar-height, 72px));
-  z-index: 40;
-  /* No padding — the frame is exactly the title's bounding box. The
-     body-bg replication paints the title's rounded-corner gaps so items
-     can't peek through them. */
-  /* MUST match body's background + attachment exactly to be invisible */
-  background:
-    radial-gradient(ellipse 90% 45% at 50% 0%, rgba(201, 169, 110, 0.10), transparent 60%),
-    radial-gradient(ellipse 65% 50% at 15% 25%, rgba(75, 110, 70, 0.12), transparent 60%),
-    radial-gradient(ellipse 80% 60% at 80% 85%, rgba(107, 122, 58, 0.20), transparent 65%),
-    linear-gradient(160deg, #0e1812 0%, #07100b 55%, #112318 100%);
-  background-attachment: fixed;
-  will-change: transform;
-  transform: translateZ(0);
-}
 
 .category-title {
   font-family: 'Cormorant Garamond', serif;
@@ -820,14 +784,20 @@ html[data-view="wines"] #winesView {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 14px 16px;
-  /* Not sticky — the frame above is sticky. This is just a rounded card
-     sitting inside the mask frame. */
+  padding: 12px 16px;
+  /* Sticky in 'All' view: sits flush below the categories pill (no gap)
+     so items scrolling up cannot peek between them. */
+  position: sticky;
+  top: calc(var(--topbar-height, 64px) + 10px + var(--categories-bar-height, 72px));
+  z-index: 40;
+  /* Fully opaque so items scrolling underneath cannot show through */
   background: linear-gradient(135deg, #15211b 0%, #0a1410 60%, #18241d 100%);
   border: 1px solid rgba(201, 169, 110, 0.18);
   border-radius: 12px;
   margin: 0;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .category-title::before,
