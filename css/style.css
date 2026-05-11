@@ -583,23 +583,21 @@ html[data-view="wines"] #winesView {
   margin-left: 12px;
 }
 
-/* Wrapper holds the pill styling. Native scrollbar is hidden and replaced
-   with a custom track/thumb (positioned absolute inside the wrapper) so
-   the bar can be physically shorter than the scrollable area.
-   Sticks flush below the topbar (no gap) so items can't peek through. */
+/* Wrapper is the sticky shield. The pill itself sits inside .categories.
+   The wrap adds an opaque "skirt" below the pill (padding-bottom in body-bg
+   color) so there's a visible gap between pill and the next sticky title,
+   while items scrolling up still cannot peek through (skirt is part of the
+   sticky element's painted area). */
 .categories-wrap {
   position: sticky;
   top: var(--topbar-height, 64px);
   z-index: 50;
   margin: 10px 0 18px;
-  padding-top: 8px;
-  padding-bottom: 0;
-  /* Fully opaque: items scrolling underneath must NOT show through. */
-  background: linear-gradient(135deg, #0e1812 0%, #08110b 50%, #11211a 100%);
-  border: 1px solid rgba(201, 169, 110, 0.15);
-  border-radius: 28px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-  overflow: hidden;
+  padding: 0 0 14px; /* 14px bottom = visible body-color gap below the pill */
+  /* Solid color that matches the body gradient's base at this fixed
+     viewport position (body is background-attachment: fixed, so this
+     stays consistent regardless of scroll). */
+  background: #0e1812;
   will-change: transform;
   transform: translateZ(0);
 }
@@ -613,6 +611,12 @@ html[data-view="wines"] #winesView {
   padding: 12px 32px 16px; /* horizontal breathing room + extra bottom for custom scrollbar */
   scroll-padding-inline: 32px;
   scroll-snap-type: x proximity;
+  /* Pill styling lives on the scroll container so rounded corners clip
+     button content cleanly at the edges. */
+  background: linear-gradient(135deg, #0e1812 0%, #08110b 50%, #11211a 100%);
+  border: 1px solid rgba(201, 169, 110, 0.15);
+  border-radius: 28px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
   /* Hide native scrollbar — replaced by .cat-scroll-track below */
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -626,12 +630,15 @@ html[data-view="wines"] #winesView {
   flex: 0 0 4px;
 }
 
-/* Custom horizontal scrollbar — inset from rounded corners */
+/* Custom horizontal scrollbar — inset from rounded corners.
+   Positioned relative to .categories-wrap. The wrap now has a 14px
+   body-color skirt at the bottom, so we offset 6px + 14px = 20px to
+   stay inside the pill. */
 .cat-scroll-track {
   position: absolute;
   left: 28px;
   right: 28px;
-  bottom: 6px;
+  bottom: 20px;
   height: 3px;
   background: rgba(255, 255, 255, 0.07);
   border-radius: 2px;
@@ -787,15 +794,12 @@ html[data-view="wines"] #winesView {
   display: flex;
   align-items: center;
   gap: 14px;
-  /* Padding-top creates visual breathing space between categories pill and
-     title text — opaque (filled with title's own gradient), so items
-     scrolling up cannot peek through. */
-  padding: 24px 16px 14px;
-  /* Sticky position: flush against the categories pill bottom. */
+  padding: 14px 16px;
+  /* Sticks flush below the categories-wrap (which now includes a 14px
+     body-color skirt — that's the visible gap between pill and title). */
   position: sticky;
   top: calc(var(--topbar-height, 64px) + var(--categories-bar-height, 72px));
   z-index: 40;
-  /* Fully opaque so items scrolling underneath cannot show through */
   background: linear-gradient(135deg, #15211b 0%, #0a1410 60%, #18241d 100%);
   border: 1px solid rgba(201, 169, 110, 0.18);
   border-radius: 12px;
