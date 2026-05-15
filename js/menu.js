@@ -1,8 +1,5 @@
 /* ============================================
-   MENÜ — Olivia Gourmet Restaurant
-   ============================================
-   Görseller ayrı dosyalarda (images/menu/) — daha hızlı yüklenir.
-   Bu dosya admin panelinden tekrar dışa aktarılabilir.
+   MENÜ — Yönetim Paneli'nden 15.05.2026 18:30:31 tarihinde dışa aktarıldı
    ============================================ */
 
 window.MENU = {
@@ -558,7 +555,7 @@ window.MENU = {
           "name": "T-Bone Steak (700g) Dry Aged",
           "icon": "🥩",
           "image": "images/menu/food-dryAged-1-t-bone-steak-700g-dry-aged.jpg",
-          "price": 2790,
+          "price": 3190,
           "description": "Izgara T-Bone Steak",
           "translations": {
             "en": "Grilled T-Bone Steak",
@@ -575,7 +572,7 @@ window.MENU = {
           "name": "Dallas Steak (600g) Dry Aged",
           "icon": "🥩",
           "image": "",
-          "price": 2790,
+          "price": 3190,
           "description": "Izgara Dallas Steak",
           "translations": {
             "en": "Grilled Dallas Steak",
@@ -592,7 +589,7 @@ window.MENU = {
           "name": "Tomahawk Steak (700g) Dry Aged",
           "icon": "🥩",
           "image": "images/menu/food-dryAged-3-tomahawk-steak-700g-dry-aged.jpg",
-          "price": 2790,
+          "price": 3190,
           "description": "Izgara Tomahawk Steak",
           "translations": {
             "en": "Grilled Tomahawk Steak",
