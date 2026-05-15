@@ -165,6 +165,9 @@
   // Rendering
   // ============================================
   function formatPrice(amount) {
+    // 0 / null / undefined / empty → "—" (e.g., complimentary extras &
+    // sauces that ship with the main dish — saves manual editing per item)
+    if (!amount) return '—';
     const num = new Intl.NumberFormat(STATE.lang, {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0
