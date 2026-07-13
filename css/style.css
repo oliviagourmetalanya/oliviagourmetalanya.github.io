@@ -523,7 +523,8 @@ html[data-view="wines"] #winesView {
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center; /* was: stretch → cell hücreler artık widget'a
+                           kadar daralıyor, tam ortalanıyor */
   gap: 8px;
 }
 .ta-badge {
@@ -531,10 +532,13 @@ html[data-view="wines"] #winesView {
   border: 1px solid rgba(201, 169, 110, 0.15);
   border-radius: 8px;
   padding: 4px;
-  display: flex;
+  /* inline-flex + display: inline-block gibi davranır — hücre widget'ın
+     doğal genişliğine uyar, gereksiz sağ/sol boşluk yok */
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  max-width: 100%; /* çok geniş widget'ta grup çerçevesini taşırmasın */
 }
 .ta-badge ul,
 .ta-badge li { list-style: none; margin: 0; padding: 0; }
