@@ -547,11 +547,14 @@ html[data-view="wines"] #winesView {
   text-align: center; /* async script'in inline içerikleri de ortalansın */
 }
 /* TripAdvisor script'inin enjekte ettiği wrapper'lar (div/ul/li) block
-   olarak render oluyor ve içerikleri sola diziliyor. Zincir boyunca flex
-   center uyguluyoruz ki resim gerçekten ortada dursun. */
+   olarak render oluyor ve içerikleri sola diziliyor + Traveler's Choice
+   widget'ı img'in altına ekstra link enjekte ediyor. Zincir boyunca
+   flex center + height: 100% uyguluyoruz ki resim hücrenin tam ortasında
+   (hem yatay hem dikey) kalsın. */
 .ta-badge > div,
 .ta-badge ul,
-.ta-badge li {
+.ta-badge li,
+.ta-badge a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -559,13 +562,15 @@ html[data-view="wines"] #winesView {
   margin: 0;
   padding: 0;
   width: auto;
+  height: auto;
+  line-height: 0;
 }
-.ta-badge a { display: inline-flex; line-height: 0; }
 .ta-badge img {
   display: block;
   max-width: 100%;
   height: auto;
-  margin: 0 auto;
+  margin: auto;
+  align-self: center;
 }
 
 .footer-mark {
