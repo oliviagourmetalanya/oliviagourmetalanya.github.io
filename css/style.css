@@ -504,6 +504,15 @@ html[data-view="wines"] #winesView {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 .social-link svg { width: 26px; height: 26px; }
+/* PNG/renkli marka ikonları (ör. TripAdvisor). object-fit: contain
+   kare olmayan görselleri kesmez, 28px hafif büyütür — renkli logo
+   monokrom SVG'lerden daha net görünür. */
+.social-link .social-icon-img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+}
 .social-link:active { transform: scale(0.92); }
 .social-link:hover {
   border-color: var(--accent);
