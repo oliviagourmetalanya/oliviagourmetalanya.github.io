@@ -197,7 +197,10 @@ main { min-height: calc(100vh - 64px); }
 
 .view {
   display: none;
-  padding: 20px 20px 60px;
+  /* Bottom padding: enough clearance for the fixed scroll-to-top button
+     (48px tall, bottom: 24px → covers up to 72px from viewport bottom).
+     100px keeps the footer text ("İyi yemekler dileriz") clear of it. */
+  padding: 20px 20px 100px;
   max-width: 640px;
   margin: 0 auto;
 }
@@ -508,29 +511,29 @@ html[data-view="wines"] #winesView {
   background: var(--surface-2);
 }
 
-/* TripAdvisor rozetleri — 2x2 grid, dış grup çerçevesi + iç hücre çerçeveleri.
-   Her hücre widget'ı kendi orijinal boyutunda gösteriyor (sadece cell'e
-   sığmıyorsa max-width: 100% ile küçültüyoruz). */
+/* TripAdvisor rozetleri — dikey stack, dış grup çerçevesi + iç hücre
+   çerçeveleri. Hücreler widget'ın kendi boyutuna uyar (her yönde birkaç
+   px padding, min-height yok — alt kısımda gereksiz boşluk kalmaz). */
 .tripadvisor-widgets {
   margin-top: 28px;
-  padding: 14px;
+  padding: 10px;
   background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
   border: 1px solid rgba(201, 169, 110, 0.25);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
 }
 .ta-badge {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(201, 169, 110, 0.15);
   border-radius: 8px;
-  padding: 10px;
+  padding: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 90px;
   overflow: hidden;
 }
 .ta-badge ul,
@@ -1069,7 +1072,7 @@ html[data-view="wines"] #winesView {
    ============================================ */
 
 @media (min-width: 768px) {
-  .view { padding: 32px 24px 80px; }
+  .view { padding: 32px 24px 110px; }
   .brand-name { font-size: 72px; }
   .view-title { font-size: 48px; }
   .item { grid-template-columns: 140px 1fr; }
@@ -1080,7 +1083,7 @@ html[data-view="wines"] #winesView {
 
 /* Small phones */
 @media (max-width: 360px) {
-  .view { padding: 16px 14px 40px; }
+  .view { padding: 16px 14px 90px; }
   .brand-name { font-size: 48px; }
   .menu-btn { padding: 18px 16px; gap: 12px; }
   .btn-icon-wrap { width: 44px; height: 44px; }
