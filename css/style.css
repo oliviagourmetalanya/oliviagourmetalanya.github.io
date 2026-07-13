@@ -503,7 +503,7 @@ html[data-view="wines"] #winesView {
   transition: transform 0.2s, border-color 0.2s, color 0.2s, background 0.2s;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
-.social-link svg { width: 22px; height: 22px; }
+.social-link svg { width: 26px; height: 26px; }
 .social-link:active { transform: scale(0.92); }
 .social-link:hover {
   border-color: var(--accent);
