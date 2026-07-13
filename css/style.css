@@ -514,18 +514,14 @@ html[data-view="wines"] #winesView {
 /* TripAdvisor rozetleri — dikey stack, dış grup çerçevesi + iç hücre
    çerçeveleri. Hücreler widget'ın kendi boyutuna uyar (her yönde birkaç
    px padding, min-height yok — alt kısımda gereksiz boşluk kalmaz). */
+/* Grup çerçevesi yok — sadece rozetleri dikey ortalayıp hizalıyoruz.
+   Her rozet kendi .ta-badge çerçevesiyle görünüyor. */
 .tripadvisor-widgets {
   margin-top: 28px;
-  padding: 10px;
-  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
-  border: 1px solid rgba(201, 169, 110, 0.25);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  align-items: center; /* was: stretch → cell hücreler artık widget'a
-                           kadar daralıyor, tam ortalanıyor */
-  gap: 8px;
+  align-items: center;
+  gap: 10px;
 }
 .ta-badge {
   background: rgba(255, 255, 255, 0.03);
