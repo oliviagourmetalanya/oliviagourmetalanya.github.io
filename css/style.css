@@ -508,29 +508,38 @@ html[data-view="wines"] #winesView {
   background: var(--surface-2);
 }
 
-/* TripAdvisor Traveler's Choice rozeti — merkez, hafif altın tonlu tray */
-.tripadvisor-widget {
-  margin-top: 32px;
+/* TripAdvisor rozetleri — yan yana, ince çerçeve, mobilde sarar */
+.tripadvisor-widgets {
+  margin-top: 28px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
-.tripadvisor-widget .TA_certificateOfExcellence {
+.ta-badge {
   background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
-  border: 1px solid rgba(201, 169, 110, 0.25);
-  border-radius: var(--radius);
-  padding: 18px 22px;
-  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(201, 169, 110, 0.2);
+  border-radius: 10px;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
 }
-.tripadvisor-widget ul,
-.tripadvisor-widget li { list-style: none; margin: 0; padding: 0; }
-.tripadvisor-widget img,
-.tripadvisor-widget .widCOEImg {
+.ta-badge ul,
+.ta-badge li { list-style: none; margin: 0; padding: 0; }
+.ta-badge a { display: block; line-height: 0; }
+.ta-badge img {
   display: block;
-  max-width: 160px;
+  max-width: 110px;
+  max-height: 48px;
+  width: auto;
   height: auto;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+  object-fit: contain;
 }
-.tripadvisor-widget a { display: block; }
+/* Traveler's Choice rozeti dikey — biraz daha uzun tut */
+.ta-badge .widCOEImg { max-height: 68px; max-width: 60px; }
 
 .footer-mark {
   text-align: center;

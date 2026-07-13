@@ -29,8 +29,8 @@ window.CONFIG = {
       "url": "https://maps.app.goo.gl/PewMA3wBoSZ51tFz9"
     },
     {
-      "type": "phone",
-      "url": "tel:+902425190907"
+      "type": "whatsapp",
+      "url": "https://wa.me/905515415107"
     }
   ],
   "defaultLang": "en",
