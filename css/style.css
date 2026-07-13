@@ -508,6 +508,30 @@ html[data-view="wines"] #winesView {
   background: var(--surface-2);
 }
 
+/* TripAdvisor Traveler's Choice rozeti — merkez, hafif altın tonlu tray */
+.tripadvisor-widget {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+}
+.tripadvisor-widget .TA_certificateOfExcellence {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid rgba(201, 169, 110, 0.25);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  box-shadow: var(--shadow-sm);
+}
+.tripadvisor-widget ul,
+.tripadvisor-widget li { list-style: none; margin: 0; padding: 0; }
+.tripadvisor-widget img,
+.tripadvisor-widget .widCOEImg {
+  display: block;
+  max-width: 160px;
+  height: auto;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+}
+.tripadvisor-widget a { display: block; }
+
 .footer-mark {
   text-align: center;
   margin-top: 36px;
