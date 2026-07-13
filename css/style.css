@@ -508,22 +508,39 @@ html[data-view="wines"] #winesView {
   background: var(--surface-2);
 }
 
-/* TripAdvisor rozetleri — dikey stack, ortalanmış, orijinal boyutlarda.
-   TripAdvisor async script her widget'ı kendi stiliyle (arka plan, padding,
-   yıldız/logo layout) render ediyor — biz sadece hizalayıp yer açıyoruz,
-   içeriğin boyutuna dokunmuyoruz. */
+/* TripAdvisor rozetleri — 2x2 grid, dış grup çerçevesi + iç hücre çerçeveleri.
+   Her hücre widget'ı kendi orijinal boyutunda gösteriyor (sadece cell'e
+   sığmıyorsa max-width: 100% ile küçültüyoruz). */
 .tripadvisor-widgets {
   margin-top: 28px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid rgba(201, 169, 110, 0.25);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
-.ta-badge { display: block; }
+.ta-badge {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(201, 169, 110, 0.15);
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 90px;
+  overflow: hidden;
+}
 .ta-badge ul,
 .ta-badge li { list-style: none; margin: 0; padding: 0; }
 .ta-badge a { display: inline-block; line-height: 0; }
-.ta-badge img { display: block; }
+.ta-badge img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 
 .footer-mark {
   text-align: center;
